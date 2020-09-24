@@ -1,3 +1,7 @@
+/* * {
+  box-sizing: border-box;
+} */
+
 .App {
   text-align: center;
 }
@@ -36,3 +40,352 @@
     transform: rotate(360deg);
   }
 }
+
+/* ------------ NAVBAR PROPERTIES ------------ */
+.navbar {
+  position: fixed;
+  height: 70px;
+  width: 100%;
+  background-color: #f2f2f2;
+}
+.navbar-brand {
+  margin:0;
+	padding-top: 18px;
+	/* padding-bottom: 20px; */
+	height: 40px;
+	font-family: 'Rubik';
+	font-weight: 300;
+	font-style: normal;
+	font-size: 27px;
+	letter-spacing: .10em;
+	line-height: 1em;
+	color: #991a1a !important;
+  background-color: #f2f2f2;
+  float: left;
+}
+
+.navbar-items {
+  margin: 0px;
+  height: 70px;
+  padding: 0px;
+  font-family: 'Quicksand', sans-serif;
+	background-color: #f2f2f2;
+	display: grid;
+	grid-template-columns: 400px max-content auto;
+  align-items: center;
+  margin: 0px;
+  /* padding: 10px; */
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+a {
+    margin: 0px;
+    padding: 10px;
+    color: #848484;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+a:hover {
+  color: #000000;
+  transition: 0.3s;
+}
+
+/* ------------ BLOG SUMMARY PROPERTIES ------------ */
+.topics {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.blog_topic {
+  font-family: 'Quicksand', sans-serif;
+	margin: 10px;
+	padding: 10px;
+	flex: 200px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #b6b6b6;
+	transition: 0.3s;
+}
+
+.blog_topic:hover {
+  border-color: #8c2721;
+  padding: 15px;
+}
+
+/* ------------ BLOG PAGE PROPERTIES ------------ */
+
+.sidebar {
+  height: 100%;
+  width: 100%;
+  width: 200px;
+  position: fixed;
+  background-color: #111;
+  overflow: hidden;
+  transition: 0.5s;
+  padding-top: 50px;
+  background-color: #a2a2a2;
+  color: rgb(0, 0, 0);
+  white-space:nowrap;
+  text-overflow: ellipsis;
+}
+
+.sidebar a {
+  /* width: 100%; */
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 15px;
+  color: #f4f4f4;
+  display: block;
+  transition: 0.3s;
+  overflow-x: hidden;
+  white-space:nowrap;
+  text-overflow: ellipsis;
+}
+
+.sidebar-block {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.sidebar-title {
+  padding: 8px 8px 8px 32px;
+  font-size: 20px;
+  color: #f4f4f4;
+  display: block;
+	font-family: 'Rubik';
+	font-weight: 300;
+	font-style: normal;
+	font-size: 20px;
+  letter-spacing: .10em;
+  /* text-align: center; */
+}
+
+.sidebar-links {
+  transition: 0.3s;
+  height: 100%;
+  width: 100%;
+  overflow-y: hidden;
+}
+
+.sidebar-links-enter-active {
+  height: 0px;
+  overflow-y: hidden;
+}
+
+.sidebar-links-exit {
+  transition: 0.3s;
+  height: 200px;
+  overflow-y: hidden;
+}
+
+.sidebar-enter, .sidebar-appear {
+  top: var(--menu-starting-top);
+  width: var(--toggler-width);
+  max-height: var(--toggler-height);
+  color: var(--fade-from-color);
+  background-color: var(--toggler-bg-color);
+}
+
+/*  Settings controlling the accordion action on the sidebar */
+.sidebar-test {
+  overflow-y: hidden;
+}
+
+.sidebar-test-appear {
+  max-height: 0px;
+  overflow-y: hidden;
+}
+
+.sidebar-test-enter{
+  max-height: 0px;
+  overflow-y: hidden;
+}
+
+.sidebar-test-enter-done{
+  max-height: 300px;
+  background-color: #919191;
+  transition: max-height 700ms, background-color 200ms;
+  overflow-y: hidden;
+}
+
+.sidebar-test-exit{
+  max-height: 300px;
+  background-color: #919191;
+  overflow-y: hidden;
+}
+
+.sidebar-test-exit-active{
+  max-height: 0px;
+  background-color: #919191;
+  transition: max-height 250ms cubic-bezier(.04,.65,.23,.98), background-color 100ms linear;
+  overflow-y: hidden;
+}
+
+/* Settings controlling the sidebar toggling */
+
+/* .sidebar-toggle {
+  width: 1000px;
+  max-width: 1000px;
+  overflow-y: hidden;
+} */
+
+.article-toggle {
+  margin-left: 200px;
+  margin-top: 0px;
+  margin-bottom: 50px;
+}
+
+.sidebar-toggle {
+  width: 200px;
+  height: 1000px;
+  /* max-width: 1000px; */
+  overflow-y: hidden;
+  background-color: #a2a2a2;
+}
+
+.sidebar-toggle-appear {
+  width: 200px;
+}
+
+.article-toggle-appear {
+  margin-left: 200px;
+}
+
+.sidebar-toggle-enter{
+  width: 200px;
+}
+
+.article-toggle-enter {
+  margin-left: 200px;
+}
+
+.sidebar-toggle-enter-done{
+  width: 0px;
+  transition: width 700ms
+}
+
+.article-toggle-enter-done {
+  margin: 0px;
+  transition: margin-left 700ms
+}
+
+.sidebar-toggle-exit{
+  width: 0px;
+}
+
+.article-toggle-exit {
+  margin-left: 0px;
+}
+
+.sidebar-toggle-exit-active{
+  width: 200px;
+  transition: width 700ms
+}
+
+.article-toggle-exit-active {
+  margin-left: 200px;
+  transition: margin-left 700ms
+}
+
+.article-toggle-exit-done {
+  margin-left: 200px;
+  transition: margin-left 700ms
+}
+
+/*  done  */
+
+.sidebar-links.active {
+  transition: 0.3s;
+  height: 0px;
+  overflow-y: hidden;
+}
+
+.sidebar-links-closed {
+  transition: 0.3s;
+  height: 0px;
+  overflow-y: hidden;
+}
+
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+
+.blog-article {
+  margin-left: 200px;
+  margin-top: 0px;
+  margin-bottom: 50px;
+  transition: 0.5s;
+}
+
+/* .blog-title-fade {
+  height: 50px;
+  width: 100%;
+  background-image:linear-gradient(0deg, rgba(255,0,0,0), #ffffff);
+}
+
+.blog-title-spacer {
+  height: 20px;
+  background-color: #ffffff;
+} */
+
+.blog-title {
+  margin: 0px;
+  height: 50px;
+  /* width: 100%; */
+  top: 70px;
+  background-color: #a2a2a2;
+}
+
+.blog-title-text {
+  height: 50px;
+  width: 100%;
+  background-color: #a2a2a2;
+  color: #f4f4f4;
+  margin: 0px;
+  margin-left: 70px;
+  height: 50px;
+	font-family: 'Rubik';
+	font-weight: 300;
+	font-style: normal;
+	font-size: 27px;
+	letter-spacing: .10em;
+}
+
+.blog-text {
+  margin-left: 100px;
+  margin-right: 100px;
+  margin-top: 50px;
+	/* font-family: 'Rubik', sans-serif; */
+	font-weight: 300;
+	font-style: normal;
+	font-size: 15px;
+	letter-spacing: .06em;
+	line-height: 1.8em;
+	text-transform: none;
+  color: rgb(16, 16, 16);
+  /* color: rgba(29,29,29,.7); */
+}
+
+.openbtn {
+  height: 50px;
+  font-size: 25px;
+  cursor: pointer;
+  background-color: #a2a2a2;
+  color: #cccccc;
+  padding: 0px;;
+  border: none;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+/*
+.scroll {
+  overflow-y: scroll;
+  height: 100%;
+} */

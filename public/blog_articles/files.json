@@ -1,0 +1,79 @@
+{
+    "topics": [
+        {
+            "topic": "Thoughts",
+            "files": [
+                {
+                    "title": "So what is the point of engineering research in academia?",
+                    "file": "./thoughts/academia_research.md"
+                },
+                {
+                    "title": "Biases and Beliefs",
+                    "file": "./thoughts/academia_research1.md"
+                },
+                {
+                    "title": "In Defence of Dogs",
+                    "file": "./thoughts/dogs.html"
+                },
+                {
+                    "title": "Technobablyon",
+                    "file": "./thoughts/academia_research3.md"
+                },
+                {
+                    "title": "Our Resilient Minds",
+                    "file": "./thoughts/minds.md"
+                }
+            ]
+        },
+        {
+            "topic": "LND NLP",
+            "files": [
+                {
+                    "title": "So what is the point of engineering research in academia?",
+                    "file": "./thoughts/academia_research.md"
+                },
+                {
+                    "title": "Biases and Beliefs",
+                    "file": "./thoughts/academia_research1.md"
+                },
+                {
+                    "title": "In defence of dogs",
+                    "file": "./thoughts/academia_research2.md"
+                },
+                {
+                    "title": "Technobablyon",
+                    "file": "./thoughts/academia_research3.md"
+                },
+                {
+                    "title": "Our persistent minds",
+                    "file": "./thoughts/academia_research4.md"
+                }
+            ]
+        },
+        {
+            "topic": "PyComp",
+            "files": [
+                {
+                    "title": "So what is the point of engineering research in academia?",
+                    "file": "./thoughts/academia_research.md"
+                },
+                {
+                    "title": "Biases and Beliefs",
+                    "file": "./thoughts/academia_research1.md"
+                },
+                {
+                    "title": "In defence of dogs",
+                    "file": "./thoughts/academia_research2.md"
+                },
+                {
+                    "title": "Technobablyon",
+                    "file": "./thoughts/academia_research3.md"
+                },
+                {
+                    "title": "Our persistent minds",
+                    "file": "./thoughts/academia_research4.md"
+                }
+            ]
+        }
+    ]
+}
