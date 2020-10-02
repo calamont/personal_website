@@ -42,17 +42,17 @@ const Thoughts = () => {
           classNames="article-toggle"
           appear>
           <div className="article-toggle">
-            <div className="blog-title">
+            {/* <div className="blog-title">
               <h2 style={{ margin: '0px' }}>
                 <button className="openbtn" onClick={toggleSidebar}>☰ </button>
                 <span className="blog-title-text">{blogHeading}</span>
               </h2>
-            </div>
-            <Scroll>
-              {/* <BlogHeaderImage src={blogImage} /> */}
-              {/* <ReactMarkdown source={blogText} className="blog-text" /> */}
-              <div className="blog-text" dangerouslySetInnerHTML={{ __html: blogText }} />
-            </Scroll>
+            </div> */}
+            {/* <Scroll> */}
+            {/* <BlogHeaderImage src={blogImage} /> */}
+            {/* <ReactMarkdown source={blogText} className="blog-text" /> */}
+            <div className="blog-text" dangerouslySetInnerHTML={{ __html: blogText }} />
+            {/* </Scroll> */}
           </div>
         </CSSTransition>
         {/* </TransitionGroup> */}

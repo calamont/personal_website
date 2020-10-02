@@ -42,6 +42,12 @@ const SideBar = ({ topic, changeBlog }) => {
 
     return (
         <div className="sidebar">
+            <div class="navbar-brand" href="#">Callum Lamont</div>
+            <div className="sidebar-block">
+                <div className="sidebar-title">
+                    About
+                </div>
+            </div>
             {
                 topicList.map((topic) => {
                     return (
@@ -63,6 +69,11 @@ const SideBar = ({ topic, changeBlog }) => {
                     )
                 })
             }
+            <div className="sidebar-block">
+                <div className="sidebar-title">
+                    Sketches
+                </div>
+            </div>
         </div >
     )
 }
@@ -73,7 +84,7 @@ const SideBarLinks = ({ topicList, changeBlog }) => {
             {
                 topicList.map((entry) => {
                     return (
-                        <a href="#" onClick={() => changeBlog(entry)}>{entry.title}</a>
+                        <a className="sidebar-links" href="#" onClick={() => changeBlog(entry)}>{entry.title}</a>
                     );
                 })
             }
