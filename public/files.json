@@ -1,0 +1,83 @@
+{
+    "topics": [
+        {
+            "topic": "Thoughts",
+            "files": [
+                {
+                    "title": "So what is the point of engineering research in academia?",
+                    "file": "./thoughts/academia_research.html"
+                },
+                {
+                    "title": "A Roll of Dice",
+                    "file": "./thoughts/a_roll_of_dice.html"
+                },
+                {
+                    "title": "Biases and Beliefs",
+                    "file": "./thoughts/biases_and_beliefs.html"
+                },
+                {
+                    "title": "Questioning our Choices",
+                    "file": "./thoughts/questioning_our_choices.html"
+                },
+                {
+                    "title": "Technobablyon",
+                    "file": "./thoughts/technobabylon.html"
+                },
+                {
+                    "title": "Switching Seasons",
+                    "file": "./thoughts/switching_seasons.html"
+                },
+                {
+                    "title": "Our Resilient Minds",
+                    "file": "./thoughts/minds.md"
+                },
+                {
+                    "title": "In Defence of Dogs",
+                    "file": "./thoughts/dogs.html"
+                }
+            ]
+        },
+        {
+            "topic": "LND NLP",
+            "files": [
+                {
+                    "title": "The Numbers",
+                    "file": "./london_nlp/numbers.html"
+                },
+                {
+                    "title": "The Words",
+                    "file": "./london_nlp/1_background.html"
+                },
+                {
+                    "title": "LDA",
+                    "file": "./london_nlp/numbers.html"
+                }
+            ]
+        },
+        {
+            "topic": "PyComp",
+            "files": [
+                {
+                    "title": "So what is the point of engineering research in academia?",
+                    "file": "./thoughts/academia_research.md"
+                },
+                {
+                    "title": "Biases and Beliefs",
+                    "file": "./thoughts/academia_research1.md"
+                },
+                {
+                    "title": "In defence of dogs",
+                    "file": "./thoughts/academia_research2.md"
+                },
+                {
+                    "title": "Technobablyon",
+                    "file": "./thoughts/academia_research3.md"
+                },
+                {
+                    "title": "Our persistent minds",
+                    "file": "./thoughts/academia_research4.md"
+                }
+            ]
+        }
+    ]
+}
