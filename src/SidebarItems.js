@@ -5,8 +5,12 @@ import { Link } from "react-router-dom";
 
 const SidebarItems = ({ setSidebarState, setBlogText }) => {
 
-  // Get list of the blog topics and blog posts
+
   const [topicList, setTopicList] = useState([]);
+  const [accordionState, setAccordionState] = useState({});
+  const [testState, setTestState] = useState(true);
+
+  // Get list of the blog topics and blog posts
   const createFileList = async () => {
     const response = await fetch(process.env.PUBLIC_URL + `/files.json`);
     const fileList = await response.json();
@@ -19,6 +23,7 @@ const SidebarItems = ({ setSidebarState, setBlogText }) => {
     })
   }
 
+  // Change blog text when clicking on a link
   const changeBlog = (fileObj) => {
     fetch(process.env.PUBLIC_URL + `/${fileObj.file}`)
       .then(response => response.text())
@@ -27,6 +32,7 @@ const SidebarItems = ({ setSidebarState, setBlogText }) => {
     resizeLog();
   }
 
+  // Collapse all open accordions in the sidebar
   const resetAccordion = () => {
     let stateCopy = accordionState
     for (const key in stateCopy) {
@@ -45,9 +51,7 @@ const SidebarItems = ({ setSidebarState, setBlogText }) => {
     }
   }
 
-  const [accordionState, setAccordionState] = useState({});
-  const [testState, setTestState] = useState(true);
-
+  // Open or close an accordion when clicking the theme title
   const toggleAccordion = (topic) => {
     setTestState(!testState)
     let stateCopy = accordionState

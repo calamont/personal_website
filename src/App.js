@@ -13,8 +13,8 @@ import './App.css';
 const App = () => {
 
   const [blogText, setBlogText] = useState("");
-
   const [sidebarState, setSidebarState] = useState(true)
+
   const toggleSidebar = () => {
     setSidebarState(!sidebarState)
     console.log("pressed", sidebarState)
