@@ -123,7 +123,8 @@ body {
 	font-style: normal;
 	font-size: 18px;
   letter-spacing: .10em;
-  line-height: normal
+  line-height: normal;
+  cursor: default;
 }
 
 .theme-links {
