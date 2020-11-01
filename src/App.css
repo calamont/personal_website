@@ -88,9 +88,6 @@ body {
   background-color: #ffffff;
 }
 
-.navbar-toggle {
-  float:right
-}
 .sidebar {
   top: 0px;
   height: 100%;
@@ -104,9 +101,17 @@ body {
 }
 
 .navbar-toggle {
+  float: right;
   display: var(--display-toggle-button);
   margin-right: 30px;
   cursor: default;
+  /* The additions below prevent selection of the text */
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none;
 }
 
 .theme-chunk {
@@ -125,6 +130,13 @@ body {
   letter-spacing: .10em;
   line-height: normal;
   cursor: default;
+  /* The additions below prevent selection of the text */
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none;
 }
 
 .theme-links {
