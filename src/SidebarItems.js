@@ -32,14 +32,6 @@ const SidebarItems = ({ setSidebarState, setBlogText }) => {
     resizeLog();
   }
 
-  // Collapse all open accordions in the sidebar
-  const resetAccordion = () => {
-    let stateCopy = accordionState
-    for (const key in stateCopy) {
-      stateCopy[key] = false;
-    }
-  }
-
   // Keep track of window size and hide sidebar if window is small
   const resizeLog = () => {
     const width = window.innerWidth;
@@ -48,6 +40,14 @@ const SidebarItems = ({ setSidebarState, setBlogText }) => {
       resetAccordion()
     } else {
       setSidebarState(true)
+    }
+  }
+
+  // Collapse all open accordions in the sidebar
+  const resetAccordion = () => {
+    let stateCopy = accordionState
+    for (const key in stateCopy) {
+      stateCopy[key] = false;
     }
   }
 

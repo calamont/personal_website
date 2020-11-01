@@ -15,11 +15,13 @@ const App = () => {
   const [blogText, setBlogText] = useState("");
   const [sidebarState, setSidebarState] = useState(true)
 
+  // Shows/hides the dropdown sidebar
   const toggleSidebar = () => {
     setSidebarState(!sidebarState)
     console.log("pressed", sidebarState)
   }
 
+  // Rerender page to include LaTex style maths
   const renderMath = () => {
     if ("MathJax" in window) {
       console.log("finding mathhhhs")
