@@ -38,7 +38,13 @@ const App = () => {
       <div className="sidebar">
         <div class="callum-header" href="#">
           <span>Callum Lamont</span>
-          <span className="navbar-toggle" onClick={toggleSidebar}>x</span>
+          <span className="navbar-toggle" onClick={toggleSidebar}>
+            <svg viewBox="0 0 100 80" width="40" height="40">
+              <rect width="50" height="4" rx="2" ry="2"></rect>
+              <rect width="50" height="4" rx="2" ry="2" y="15"></rect>
+              <rect width="50" height="4" rx="2" ry="2" y="30"></rect>
+            </svg>
+          </span>
         </div>
         <CSSTransition in={sidebarState}
           classNames="sidebar-toggle"

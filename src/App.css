@@ -84,7 +84,6 @@ body {
 	letter-spacing: .10em;
 	line-height: 1em;
 	color: #991a1a !important;
-  background-color: #f2f2f2;
   background-color: #ffffff;
 }
 
@@ -105,6 +104,8 @@ body {
   display: var(--display-toggle-button);
   margin-right: 30px;
   cursor: default;
+  border-radius: 10px;
+  color: red;
   /* The additions below prevent selection of the text */
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Safari */
@@ -112,6 +113,11 @@ body {
   -moz-user-select: none; /* Old versions of Firefox */
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none;
+}
+
+rect {
+  fill: #bdbcbc;;
+  border-radius: 50px;
 }
 
 .theme-chunk {
