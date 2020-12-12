@@ -1,0 +1,3 @@
+[submodule "public/thoughts"]
+	path = public/thoughts
+	url = https://github.com/calamont/thoughts.git
