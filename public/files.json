@@ -1,6 +1,10 @@
 {
   "topics": [
     {
+      "files": [],
+      "topic": "public"
+    },
+    {
       "files": [
         {
           "title": null,
@@ -8,6 +12,19 @@
         }
       ],
       "topic": "london-data"
+    },
+    {
+      "files": [
+        {
+          "title": "The Numbers",
+          "file": "london-data/markdown/1_numbers.html"
+        },
+        {
+          "title": "The Words",
+          "file": "london-data/markdown/2_words.html"
+        }
+      ],
+      "topic": "london-data/markdown"
     },
     {
       "files": [
