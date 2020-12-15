@@ -1,1 +1,0 @@
-find ./* -type d -exec sh -c "ggrep -PRo \(\?\<\=\>\).*\(\?\=\</h1\>\) {} | jq -R -n -c '{(\"files\"):[inputs|split(\":\")|{(\"title\"):.[1],(\"file\"):.[0]}]}' > {}/files.json" \;
