@@ -3,6 +3,15 @@
     {
       "files": [
         {
+          "title": null,
+          "file": "London Data"
+        }
+      ],
+      "topic": "london-data"
+    },
+    {
+      "files": [
+        {
           "title": "Thoughts",
           "file": "thoughts/README.html"
         },
