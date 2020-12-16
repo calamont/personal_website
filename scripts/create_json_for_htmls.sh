@@ -1,8 +1,9 @@
-for d in $(find public -type d)
+# for d in $(find public -type d)
+for d in public/*/
 do
-    # # If there are no HTML files then continue to the next directory
-    n_html_files=$(ls -lR $d/*.html | wc -l)
-    if [ $n_html_files -eq 0 ]
+    # # If there is no README.html file then continue to the next directory
+    readme_present=$(find $d -iname "readme.html" | wc -l)
+    if [ $readme_present -eq 0 ]
     then
         continue
     fi
@@ -12,7 +13,7 @@ do
     # Pipe the result to the stream editor (sed) to remove the prepended 'public' directory.
     # Then pipe this to jq, which makes a JSON field "files" with an array of JSONs with
     # a field for the html h1 text and the location of the file.
-    file_json=$(ggrep -Pro -e \(\?\<\=\>\)\[a-zA-Z0-9\!\?\:\ \-\]\*\?\(\?\=\(\<a.\*/a\>\)\?\</h1\>\) $d/*.html \
+    file_json=$(ggrep -HPro -e \(\?\<\=\>\)\[a-zA-Z0-9\!\?\:\ \-\]\*\?\(\?\=\(\<a.\*/a\>\)\?\</h1\>\) --include "*.html" $d \
         | sed 's_public/__' \
         | jq -R -n "{(\"files\"):[inputs|split(\":\")|{(\"title\"):.[1],(\"file\"):.[0]}]}")
 
