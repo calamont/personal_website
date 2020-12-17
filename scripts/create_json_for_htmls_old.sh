@@ -1,4 +1,3 @@
-#!/bin/sh
 # for d in $(find public -type d)
 for d in public/*/
 do
@@ -14,22 +13,13 @@ do
     # Pipe the result to the stream editor (sed) to remove the prepended 'public' directory.
     # Then pipe this to jq, which makes a JSON field "files" with an array of JSONs with
     # a field for the html h1 text and the location of the file.
-    files_and_titles=$(
-    for file in $(find $d -iname "*.html")
-    do
-
-        if [[ $file == *"README.html"* ]]
-        then
-            echo $file:"README"
-        else
-            ggrep -HPo -e \(\?\<\=\>\)\[a-zA-Z0-9\!\?\:\ \-\]\*\?\(\?\=\(\<a.\*/a\>\)\?\</h1\>\) $file
-        fi
-    done | sed 's_public/__' | jq -R -n "{(\"files\"):[inputs|split(\":\")|{(\"title\"):.[1],(\"file\"):.[0]}]}")
+    file_json=$(ggrep -HPro -e \(\?\<\=\>\)\[a-zA-Z0-9\!\?\:\ \-\]\*\?\(\?\=\(\<a.\*/a\>\)\?\</h1\>\) --include "*.html" $d \
+        | sed 's_public/__' \
+        | jq -R -n "{(\"files\"):[inputs|split(\":\")|{(\"title\"):.[1],(\"file\"):.[0]}]}")
 
     d=$(sed 's_public/__' <<< $d) # strip 'public' folder from directory
-    # # Add topic (directory) field for where the HTML files belong
-    jq -n --arg topic "${d%/}" --argjson files "$files_and_titles" '$files + ( .topic = $topic )'
+    # Add topic (directory) field for where the HTML files belong
+    jq -n --arg topic "${d%/}" --argjson files "$file_json" '$files + ( .topic = $topic )'
 
 done | jq -n '.topics |= [inputs]' > "public/files.json"  # combine results from for loop into single JSON
-
 
