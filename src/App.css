@@ -298,8 +298,8 @@ rect {
 .blog-text h1 {
   width: 100%;
   margin: 0px;
-  margin-bottom: 20px;
-  margin-left: 20px !important;
+  /* margin-bottom: 20px; */
+  /* margin-left: 20px !important; */
 	font-family: 'Rubik' !important;
 	font-weight: 300 !important;
 	font-style: normal !important;
@@ -327,6 +327,10 @@ rect {
   resize: inherit !important;
   /* color: rgba(29,29,29,.7); */
   word-break: break-word !important;
+}
+
+.blog-text p {
+  margin-top: 0px;
 }
 
 
