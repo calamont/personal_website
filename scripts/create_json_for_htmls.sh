@@ -27,9 +27,9 @@ do
         then
             title=$(ggrep -Pho -e \(\?\<\=\>\)\[a-zA-Z0-9\!\?\:\ \-\]\*\?\(\?\=\(\<a.\*/a\>\)\?\</h1\>\) $file)
             date=$(ggrep -Pho -e \(\(\?\<\=\<time\ datetime\=\"\)\\d{4}\-\\d{2}\-\\d{2}\) $file)
-            echo $file%$title%$date
+            echo $title%$file%$date
         fi
-    done | sed 's_public/__' | jq -R '{files: [inputs|split("%") | {title:.[1], file:.[0],  date:.[2]}] | sort_by(.date) | reverse}')
+    done | sed 's_public/__' | jq -R '{files: [inputs | split("%") | {title:.[0], file:.[1],  date:.[2]}] | sort_by(.date) | reverse}')
 
         # if [[ $file != *"README.html"* ]]
         # then
