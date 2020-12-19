@@ -38,5 +38,3 @@ do
         '$files + ( .topic = $topic ) + ( .readme = {"title": "README", "file": $readme} )'
 
 done | jq -n '.topics |= [inputs]' > "public/files.json"  # combine results from for loop into single JSON
-
-
