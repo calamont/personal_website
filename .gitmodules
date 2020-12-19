@@ -1,7 +1,6 @@
 [submodule "public/thoughts"]
 	path = public/thoughts
 	url = https://github.com/calamont/thoughts.git
-[submodule "thoughts"]
 	branch = main
 [submodule "public/london-data"]
 	path = public/london-data
