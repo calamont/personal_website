@@ -70,7 +70,7 @@ const SidebarItems = ({ setSidebarState, setBlogText }) => {
     <div>
       <div className="theme-chunk">
         <div className="theme-title">
-          About
+          about
         </div>
       </div>
       {
@@ -95,7 +95,7 @@ const SidebarItems = ({ setSidebarState, setBlogText }) => {
       }
       <div className="theme-chunk">
         <div className="theme-title">
-          Sketches
+          sketches
           </div>
       </div>
     </div>
