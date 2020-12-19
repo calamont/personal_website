@@ -33,6 +33,10 @@
           "file": "thoughts//questioning_our_choices.html"
         },
         {
+          "title": "Test!",
+          "file": "thoughts//test.html"
+        },
+        {
           "title": "A Roll of Dice",
           "file": "thoughts//a_roll_of_dice.html"
         },
@@ -51,11 +55,6 @@
       ],
       "topic": "thoughts",
       "readme": "public/thoughts//README.html"
-    },
-    {
-      "files": [],
-      "topic": "thoughts_tmp",
-      "readme": "public/thoughts_tmp//README.html"
     }
   ]
 }
