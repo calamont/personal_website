@@ -16,11 +16,29 @@ const SidebarItems = ({ setSidebarState, setBlogText }) => {
     const fileList = await response.json();
     setTopicList(fileList.topics)
 
+    // Get sidebar accordion titles, initialising them as closed
     await fileList.topics.map((topic) => {
       let topicState = {};
       topicState[topic.topic] = false;
       setAccordionState(Object.assign(accordionState, topicState))
     })
+  }
+
+  // Collapse all open accordions in the sidebar
+  const resetAccordion = () => {
+    let stateCopy = accordionState
+    for (const key in stateCopy) {
+      stateCopy[key] = false;
+    }
+  }
+
+  // Open or close an accordion when clicking the theme title
+  const toggleAccordion = (topic) => {
+    setTestState(!testState)  // why do the accordions break when I remove this??
+    let stateCopy = accordionState
+    const newValue = !accordionState[topic]
+    stateCopy[topic] = newValue;
+    setAccordionState(stateCopy)
   }
 
   // Change blog text when clicking on a link
@@ -41,23 +59,6 @@ const SidebarItems = ({ setSidebarState, setBlogText }) => {
     } else {
       setSidebarState(true)
     }
-  }
-
-  // Collapse all open accordions in the sidebar
-  const resetAccordion = () => {
-    let stateCopy = accordionState
-    for (const key in stateCopy) {
-      stateCopy[key] = false;
-    }
-  }
-
-  // Open or close an accordion when clicking the theme title
-  const toggleAccordion = (topic) => {
-    setTestState(!testState)
-    let stateCopy = accordionState
-    const newValue = !accordionState[topic]
-    stateCopy[topic] = newValue;
-    setAccordionState(stateCopy)
   }
 
   useEffect(() => {
@@ -86,7 +87,7 @@ const SidebarItems = ({ setSidebarState, setBlogText }) => {
                 timeout={{ appear: 0, enter: 0, exit: 3000 }}
                 appear
                 unmountOnExit>
-                <ThemeLinks topicList={topic.files} changeBlog={changeBlog} />
+                <ThemeLinks topic={topic} changeBlog={changeBlog} />
               </CSSTransition>
             </div>
           )
@@ -101,11 +102,16 @@ const SidebarItems = ({ setSidebarState, setBlogText }) => {
   )
 }
 
-const ThemeLinks = ({ topicList, changeBlog }) => {
+const ThemeLinks = ({ topic, changeBlog }) => {
   return (
     <div>
+      <div className="theme-links" onClick={() => changeBlog(topic.readme)}>
+        <Link to={`/${topic.readme.file}`}>
+          {topic.readme.title}
+        </Link>
+      </div>
       {
-        topicList.map((entry) => {
+        topic.files.map((entry) => {
           return (
             <div className="theme-links" onClick={() => changeBlog(entry)}>
               <Link to={`/${entry.file}`}>

@@ -29,11 +29,11 @@ do
         fi
     done | sed 's_public/__' | jq -R -n "{(\"files\"):[inputs|split(\":\")|{(\"title\"):.[1],(\"file\"):.[0]}]}")
 
-    readme_filepath=$(find $d -iname "readme.html" | head -n 1)
+    readme_filepath=$(find $d -iname "readme.html" | head -n 1 | sed 's_public/__')
     d=$(sed 's_public/__' <<< $d) # strip 'public' folder from directory
     # Add topic (directory) field for where the HTML files belong and README for directory
     jq -n --arg topic "${d%/}" --argjson files "$files_and_titles" --arg readme "$readme_filepath" \
-        '$files + ( .topic = $topic ) + ( .readme = $readme )'
+        '$files + ( .topic = $topic ) + ( .readme = {"title": "README", "file": $readme} )'
 
 done | jq -n '.topics |= [inputs]' > "public/files.json"  # combine results from for loop into single JSON
 
