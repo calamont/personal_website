@@ -1,71 +1,61 @@
 {
   "topics": [
     {
-      "files": [],
-      "topic": "public"
-    },
-    {
-      "files": [
-        {
-          "title": null,
-          "file": "London Data"
-        }
-      ],
-      "topic": "london-data"
-    },
-    {
       "files": [
         {
           "title": "The Numbers",
-          "file": "london-data/markdown/1_numbers.html"
+          "file": "london-data//markdown/1_numbers.html"
         },
         {
           "title": "The Words",
-          "file": "london-data/markdown/2_words.html"
+          "file": "london-data//markdown/2_words.html"
         }
       ],
-      "topic": "london-data/markdown"
+      "topic": "london-data",
+      "readme": "public/london-data//README.html"
     },
     {
       "files": [
         {
-          "title": "Thoughts",
-          "file": "thoughts/README.html"
-        },
-        {
-          "title": "A Roll of Dice",
-          "file": "thoughts/a_roll_of_dice.html"
-        },
-        {
-          "title": "So what is the point of engineering research in academia?",
-          "file": "thoughts/academia_research.html"
-        },
-        {
-          "title": "Biases and Beliefs",
-          "file": "thoughts/biases_and_beliefs.html"
-        },
-        {
-          "title": "In Defence of Dogs",
-          "file": "thoughts/dogs.html"
+          "title": "Switching Seasons",
+          "file": "thoughts//switching_seasons.html"
         },
         {
           "title": "Our Resilient Minds",
-          "file": "thoughts/our_resilient_minds.html"
+          "file": "thoughts//our_resilient_minds.html"
+        },
+        {
+          "title": "So what is the point of engineering research in academia?",
+          "file": "thoughts//academia_research.html"
         },
         {
           "title": "Questioning our choices",
-          "file": "thoughts/questioning_our_choices.html"
+          "file": "thoughts//questioning_our_choices.html"
         },
         {
-          "title": "Switching Seasons",
-          "file": "thoughts/switching_seasons.html"
+          "title": "A Roll of Dice",
+          "file": "thoughts//a_roll_of_dice.html"
         },
         {
           "title": "Technobablyon",
-          "file": "thoughts/technobabylon.html"
+          "file": "thoughts//technobabylon.html"
+        },
+        {
+          "title": "In Defence of Dogs",
+          "file": "thoughts//dogs.html"
+        },
+        {
+          "title": "Biases and Beliefs",
+          "file": "thoughts//biases_and_beliefs.html"
         }
       ],
-      "topic": "thoughts"
+      "topic": "thoughts",
+      "readme": "public/thoughts//README.html"
+    },
+    {
+      "files": [],
+      "topic": "thoughts_tmp",
+      "readme": "public/thoughts_tmp//README.html"
     }
   ]
 }

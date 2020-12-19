@@ -9,6 +9,11 @@ do
         continue
     fi
 
+    # TODO: Save the readme as a separate field in the JSON, which will be looked for by the
+    # react accordion script first. Then include a data field in each of the markdown/notebook docs
+    # that you want to include on your website. This date field can be found as another attribute
+    # of the file JSON and can then be used to rank the rest of the docs in the accordion.
+
     # Collect <h1> tags in HTML files and output JSON. Jupyter noteebooks contain an addition
     # anchor tag _within_ the h1 tag that we need to look out for.
     # Pipe the result to the stream editor (sed) to remove the prepended 'public' directory.
@@ -18,17 +23,17 @@ do
     for file in $(find $d -iname "*.html")
     do
 
-        if [[ $file == *"README.html"* ]]
+        if [[ $file != *"README.html"* ]]
         then
-            echo $file:"README"
-        else
             ggrep -HPo -e \(\?\<\=\>\)\[a-zA-Z0-9\!\?\:\ \-\]\*\?\(\?\=\(\<a.\*/a\>\)\?\</h1\>\) $file
         fi
     done | sed 's_public/__' | jq -R -n "{(\"files\"):[inputs|split(\":\")|{(\"title\"):.[1],(\"file\"):.[0]}]}")
 
+    readme_filepath=$(find $d -iname "readme.html" | head -n 1)
     d=$(sed 's_public/__' <<< $d) # strip 'public' folder from directory
-    # # Add topic (directory) field for where the HTML files belong
-    jq -n --arg topic "${d%/}" --argjson files "$files_and_titles" '$files + ( .topic = $topic )'
+    # Add topic (directory) field for where the HTML files belong and README for directory
+    jq -n --arg topic "${d%/}" --argjson files "$files_and_titles" --arg readme "$readme_filepath" \
+        '$files + ( .topic = $topic ) + ( .readme = $readme )'
 
 done | jq -n '.topics |= [inputs]' > "public/files.json"  # combine results from for loop into single JSON
 
