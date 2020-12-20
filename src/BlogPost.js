@@ -1,5 +1,8 @@
 import React from 'react';
 
+import './Blog.css';
+import './Notebook.css';
+
 const BlogPost = ({ blogText }) => {
   const renderMath = () => {
     if ("MathJax" in window) {

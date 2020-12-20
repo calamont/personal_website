@@ -3,6 +3,8 @@ import { CSSTransition } from 'react-transition-group';
 
 import { Link } from "react-router-dom";
 
+import './SidebarItems.css';
+
 const SidebarItems = ({ setSidebarState, setBlogText }) => {
 
 
@@ -32,7 +34,7 @@ const SidebarItems = ({ setSidebarState, setBlogText }) => {
     }
   }
 
-  // Open or close an accordion when clicking the theme title
+  // Open or close an accordion when clicking the topic title
   const toggleAccordion = (topic) => {
     setTestState(!testState)  // why do the accordions break when I remove this??
     let stateCopy = accordionState
@@ -68,33 +70,33 @@ const SidebarItems = ({ setSidebarState, setBlogText }) => {
 
   return (
     <div>
-      <div className="theme-chunk">
-        <div className="theme-title">
+      <div className="topic">
+        <div className="topic-title">
           about
         </div>
       </div>
       {
         topicList.map((topic) => {
           return (
-            <div className="theme-chunk">
-              <div className="theme-title" onClick={() => {
+            <div className="topic">
+              <div className="topic-title" onClick={() => {
                 toggleAccordion(topic.topic);
               }}>
                 {topic.topic}
               </div>
               <CSSTransition in={accordionState[topic.topic]}
-                classNames="theme-accordion"
+                classNames="topic-accordion"
                 timeout={{ appear: 0, enter: 0, exit: 3000 }}
                 appear
                 unmountOnExit>
-                <ThemeLinks topic={topic} changeBlog={changeBlog} />
+                <TopicLinks topic={topic} changeBlog={changeBlog} />
               </CSSTransition>
             </div>
           )
         })
       }
-      <div className="theme-chunk">
-        <div className="theme-title">
+      <div className="topic">
+        <div className="topic-title">
           sketches
           </div>
       </div>
@@ -102,10 +104,10 @@ const SidebarItems = ({ setSidebarState, setBlogText }) => {
   )
 }
 
-const ThemeLinks = ({ topic, changeBlog }) => {
+const TopicLinks = ({ topic, changeBlog }) => {
   return (
     <div>
-      <div className="theme-links" onClick={() => changeBlog(topic.readme)}>
+      <div className="topic-links" onClick={() => changeBlog(topic.readme)}>
         <Link to={`/${topic.readme.file}`}>
           {topic.readme.title}
         </Link>
@@ -113,7 +115,7 @@ const ThemeLinks = ({ topic, changeBlog }) => {
       {
         topic.files.map((entry) => {
           return (
-            <div className="theme-links" onClick={() => changeBlog(entry)}>
+            <div className="topic-links" onClick={() => changeBlog(entry)}>
               <Link to={`/${entry.file}`}>
                 {entry.title}
               </Link>
