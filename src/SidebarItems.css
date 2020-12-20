@@ -1,0 +1,110 @@
+
+.topic {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.topic-title {
+  padding: 8px 8px 8px 15px;
+  color: #5e5e5e;
+  display: block;
+	font-family: 'Rubik';
+	font-weight: 300;
+	font-style: normal;
+	font-size: 18px;
+  letter-spacing: .10em;
+  line-height: normal;
+  cursor: default;
+  /* The additions below prevent selection of the text */
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none;
+}
+
+.topic-links {
+  padding: 8px 8px 8px 15px;
+  font-size: 15px;
+  color: #f4f4f4 !important;
+  display: block;
+  transition: 0.3s;
+  overflow-x: hidden;
+  white-space:nowrap;
+  text-overflow: ellipsis;
+  line-height: normal !important;
+  height: 33px;
+}
+
+.topic-links a {
+  color: #b16c6c !important;
+  font-family: 'Helvetica Neue', sans-serif !important;
+  font-size: 15px !important;
+  text-decoration: none !important;
+  line-height: normal !important;
+  vertical-align: middle !important;
+  display: block;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+}
+
+.topic-links-enter-active {
+  height: 0px;
+  overflow-y: hidden;
+}
+
+.topic-links-exit {
+  transition: 0.3s;
+  height: 200px;
+  overflow-y: hidden;
+}
+
+/*  Settings controlling the accordion action on the sidebar */
+.topic-accordion {
+  overflow-y: hidden;
+  line-height: normal !important
+}
+
+.topic-accordion-appear {
+  max-height: 0px;
+  overflow-y: hidden;
+}
+
+.topic-accordion-enter{
+  max-height: 0px;
+  overflow-y: hidden;
+}
+
+.topic-accordion-enter-done{
+  max-height: 300px;
+  /* background-color: #919191; */
+  background-color: #ffffff;
+  transition: max-height 700ms, background-color 200ms;
+  overflow-y: hidden;
+}
+
+.topic-accordion-exit{
+  max-height: 300px;
+  background-color: #ffffff;
+  overflow-y: hidden;
+}
+
+.topic-accordion-exit-active{
+  max-height: 0px;
+  background-color: #ffffff;
+  transition: max-height 250ms cubic-bezier(.04,.65,.23,.98), background-color 100ms linear;
+  overflow-y: hidden;
+}
+
+.topic-links.active {
+  transition: 0.3s;
+  height: 0px;
+  overflow-y: hidden;
+}
+
+.topic-links-closed {
+  transition: 0.3s;
+  height: 0px;
+  overflow-y: hidden;
+}

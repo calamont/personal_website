@@ -1,0 +1,57 @@
+#notebook-container {
+  padding: 0px !important;
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+}
+
+div#notebook {
+  font-size: 14px;
+  line-height: 20px;
+  overflow-y: hidden;
+  overflow-x: auto;
+  width: 100%;
+  padding-top: 0px !important;
+  margin: 0px;
+  outline: none;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  min-height: 100%;
+}
+
+#notebook h1 {
+  margin-top: 0px !important;
+}
+
+#notebook h3 {
+  font-weight: normal !important;
+}
+
+.text_cell, .text_cell_render, .code_cell {
+  padding: 0px !important;
+}
+
+.text_cell_render > sub {
+  position: static !important;
+}
+
+.cell {
+  position: static !important;
+}
+
+.prompt {
+  padding: 0px !important;
+  display: None;
+  width: 0px;
+}
+
+.container {
+  max-width: 850px !important;
+  width: 100% !important;
+}
+
+.input_area {
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
+  border-radius: 10px !important;
+}
