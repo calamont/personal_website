@@ -13,7 +13,7 @@
 @media screen and (max-width: 800px) {
   :root {
     --main-content-margin: 0px;
-    --blog-margin-top: 90px;
+    --blog-margin-top: 100px;
   }
 }
 
@@ -32,7 +32,7 @@
 .blog-text h1 {
   width: 100%;
   margin: 0px;
-  /* margin-bottom: 20px; */
+  margin-bottom: 5px;
   /* margin-left: 20px !important; */
 	font-family: 'Rubik' !important;
 	font-weight: 300 !important;

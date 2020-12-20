@@ -38,7 +38,7 @@
 }
 
 .topic-links a {
-  color: #b16c6c !important;
+  color: #ffffff !important;
   font-family: 'Helvetica Neue', sans-serif !important;
   font-size: 15px !important;
   text-decoration: none !important;
@@ -79,20 +79,20 @@
 .topic-accordion-enter-done{
   max-height: 300px;
   /* background-color: #919191; */
-  background-color: #ffffff;
+  background-color: #b4b6bd;
   transition: max-height 700ms, background-color 200ms;
   overflow-y: hidden;
 }
 
 .topic-accordion-exit{
   max-height: 300px;
-  background-color: #ffffff;
+  background-color: #b4b6bd;
   overflow-y: hidden;
 }
 
 .topic-accordion-exit-active{
   max-height: 0px;
-  background-color: #ffffff;
+  background-color: #b4b6bd;
   transition: max-height 250ms cubic-bezier(.04,.65,.23,.98), background-color 100ms linear;
   overflow-y: hidden;
 }
