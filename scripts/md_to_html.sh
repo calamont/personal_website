@@ -5,5 +5,6 @@ for FILE in $(find public -type f -name "*.md")
 do
     echo $FILE
     NEWFILE=$(echo $FILE | sed -e 's/.md$/.html/')
+    echo $NEWFILE
     pandoc -t html -o $NEWFILE $FILE
 done

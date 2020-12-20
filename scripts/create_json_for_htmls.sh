@@ -1,6 +1,6 @@
 #!/bin/sh
-# for d in $(find public -type d)
-for d in public/*/
+
+for d in $(find public -type d -mindepth 1 -maxdepth 1)
 do
     # # If there is no README.html file then continue to the next directory
     readme_present=$(find $d -iname "readme.html" | wc -l)
@@ -8,11 +8,6 @@ do
     then
         continue
     fi
-
-    # TODO: Save the readme as a separate field in the JSON, which will be looked for by the
-    # react accordion script first. Then include a data field in each of the markdown/notebook docs
-    # that you want to include on your website. This date field can be found as another attribute
-    # of the file JSON and can then be used to rank the rest of the docs in the accordion.
 
     # Collect <h1> tags in HTML files and output JSON. Jupyter noteebooks contain an addition
     # anchor tag _within_ the h1 tag that we need to look out for.
