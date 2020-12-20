@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { CSSTransition } from 'react-transition-group';
 
 import { Link } from "react-router-dom";
@@ -13,26 +13,31 @@ const SidebarItems = ({ setSidebarState, setBlogText }) => {
   const [testState, setTestState] = useState(true);
 
   // Get list of the blog topics and blog posts
-  const createFileList = async () => {
-    const response = await fetch(process.env.PUBLIC_URL + `/files.json`);
-    const fileList = await response.json();
-    setTopicList(fileList.topics)
+  // const createFileList = async () => {
+  //   const response = await fetch(process.env.PUBLIC_URL + `/files.json`);
+  //   const fileList = await response.json();
+  //   setTopicList(fileList.topics)
 
-    // Get sidebar accordion titles, initialising them as closed
-    await fileList.topics.map((topic) => {
-      let topicState = {};
-      topicState[topic.topic] = false;
-      setAccordionState(Object.assign(accordionState, topicState))
-    })
-  }
+  //   // Get sidebar accordion titles, initialising them as closed
+  //   await fileList.topics.forEach((topic) => {
+  //     let topicState = {};
+  //     topicState[topic.topic] = false;
+  //     setAccordionState(Object.assign(accordionState, topicState))
+  //   })
+  // }
 
-  // Collapse all open accordions in the sidebar
-  const resetAccordion = () => {
-    let stateCopy = accordionState
-    for (const key in stateCopy) {
-      stateCopy[key] = false;
-    }
-  }
+  useEffect(() => {
+    fetch(process.env.PUBLIC_URL + `/files.json`)
+      .then(response => response.json())
+      .then(fileList => {
+        setTopicList(fileList.topics);
+        fileList.topics.forEach((topic) => {
+          let topicState = {};
+          topicState[topic.topic] = false;
+          setAccordionState(Object.assign(accordionState, topicState))
+        })
+      })
+  }, [accordionState])  // TODO: is this the correct use of useEffect?
 
   // Open or close an accordion when clicking the topic title
   const toggleAccordion = (topic) => {
@@ -49,11 +54,20 @@ const SidebarItems = ({ setSidebarState, setBlogText }) => {
       .then(response => response.text())
       .then(text => setBlogText(text))
       .catch(err => console.log("ERROR", err))
-    resizeLog();
+    resizeListener();
   }
 
   // Keep track of window size and hide sidebar if window is small
-  const resizeLog = () => {
+  const resizeListener = useCallback(() => {
+
+    // Collapse all open accordions in the sidebar
+    const resetAccordion = () => {
+      let stateCopy = accordionState
+      for (const key in stateCopy) {
+        stateCopy[key] = false;
+      }
+    }
+
     const width = window.innerWidth;
     if (width < 800) {
       setSidebarState(false)
@@ -61,12 +75,13 @@ const SidebarItems = ({ setSidebarState, setBlogText }) => {
     } else {
       setSidebarState(true)
     }
-  }
+  }, [accordionState, setSidebarState])
 
   useEffect(() => {
-    window.addEventListener("resize", resizeLog);
-    createFileList();
-  }, [])
+    window.addEventListener("resize", resizeListener)
+    // clean up
+    return () => window.removeEventListener('resize', resizeListener);
+  }, [resizeListener])  // TODO: is this the correct use of useEffect?
 
   return (
     <div>
