@@ -24,12 +24,12 @@ do
             date=$(ggrep -Pho -e \(\(\?\<\=\<time\ datetime\=\"\)\\d{4}\-\\d{2}\-\\d{2}\) $file)
             echo $title%$file%$date
         fi
-    done | sed 's_public/__' | jq -R -n '{files: [inputs | split("%") | {title:.[0], file:.[1],  date:.[2]}] | sort_by(.date) | reverse}')
+    done | sed 's_public/__' | jq -R -n '{files: [inputs | split("%") | {title:.[0], file:.[1], type: "text", date:.[2]}] | sort_by(.date) | reverse}')
 
     readme_filepath=$(find $d -iname "readme.html" | head -n 1 | sed 's_public/__')
     d=$(sed 's_public/__' <<< $d) # strip 'public' folder from directory
     # Add topic (directory) field for where the HTML files belong and README for directory
     jq -n --arg topic "${d%/}" --argjson files "$files_and_titles" --arg readme "$readme_filepath" \
-        '$files + ( .topic = $topic ) + ( .readme = {"title": "README", "file": $readme} )'
+        '$files + ( .topic = $topic ) + ( .readme = {"title": "README", "file": $readme, "type": "text"} )'
 
-done | jq -n '.topics |= [inputs]' > "public/files.json"  # combine results from for loop into single JSON
+done | jq -n '.topics |= [inputs]' > "public/text_files.json"  # combine results from for loop into single JSON

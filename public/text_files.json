@@ -79,26 +79,6 @@
         "file": "thoughts/README.html",
         "type": "text"
       }
-    },
-    {
-      "files": [
-        {
-          "title": "spinner",
-          "file": "./spinner/sketch.js",
-          "type": "sketch"
-        },
-        {
-          "title": "another",
-          "file": "./another/sketch.js",
-          "type": "sketch"
-        }
-      ],
-      "topic": "sketches",
-      "readme": {
-        "title": "README",
-        "file": "sketches/readme.html",
-        "type": "text"
-      }
     }
   ]
 }

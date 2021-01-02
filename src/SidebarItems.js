@@ -5,26 +5,12 @@ import { Link } from "react-router-dom";
 
 import './SidebarItems.css';
 
-const SidebarItems = ({ setSidebarState, setBlogText }) => {
+const SidebarItems = ({ setSidebarState, setContent }) => {
 
 
   const [topicList, setTopicList] = useState([]);
   const [accordionState, setAccordionState] = useState({});
   const [testState, setTestState] = useState(true);
-
-  // Get list of the blog topics and blog posts
-  // const createFileList = async () => {
-  //   const response = await fetch(process.env.PUBLIC_URL + `/files.json`);
-  //   const fileList = await response.json();
-  //   setTopicList(fileList.topics)
-
-  //   // Get sidebar accordion titles, initialising them as closed
-  //   await fileList.topics.forEach((topic) => {
-  //     let topicState = {};
-  //     topicState[topic.topic] = false;
-  //     setAccordionState(Object.assign(accordionState, topicState))
-  //   })
-  // }
 
   useEffect(() => {
     fetch(process.env.PUBLIC_URL + `/files.json`)
@@ -49,12 +35,9 @@ const SidebarItems = ({ setSidebarState, setBlogText }) => {
   }
 
   // Change blog text when clicking on a link
-  const changeBlog = (fileObj) => {
-    fetch(process.env.PUBLIC_URL + `/${fileObj.file}`)
-      .then(response => response.text())
-      .then(text => setBlogText(text))
-      .catch(err => console.log("ERROR", err))
-    resizeListener();
+  const changeContent = (fileObj) => {
+    setContent(fileObj);
+    resizeListener();  // Is this needed here? If not we can get rid of this whole function.
   }
 
   // Keep track of window size and hide sidebar if window is small
@@ -104,25 +87,20 @@ const SidebarItems = ({ setSidebarState, setBlogText }) => {
                 timeout={{ appear: 0, enter: 0, exit: 3000 }}
                 appear
                 unmountOnExit>
-                <TopicLinks topic={topic} changeBlog={changeBlog} />
+                <TopicLinks topic={topic} changeContent={changeContent} />
               </CSSTransition>
             </div>
           )
         })
       }
-      <div className="topic">
-        <div className="topic-title">
-          sketches
-          </div>
-      </div>
     </div>
   )
 }
 
-const TopicLinks = ({ topic, changeBlog }) => {
+const TopicLinks = ({ topic, changeContent }) => {
   return (
     <div>
-      <div className="topic-links" onClick={() => changeBlog(topic.readme)}>
+      <div className="topic-links" onClick={() => changeContent(topic.readme)}>
         <Link to={`/${topic.readme.file}`}>
           {topic.readme.title}
         </Link>
@@ -130,7 +108,7 @@ const TopicLinks = ({ topic, changeBlog }) => {
       {
         topic.files.map((entry) => {
           return (
-            <div className="topic-links" onClick={() => changeBlog(entry)}>
+            <div className="topic-links" onClick={() => changeContent(entry)}>
               <Link to={`/${entry.file}`}>
                 {entry.title}
               </Link>

@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import SidebarItems from './SidebarItems';
-import BlogPost from './BlogPost';
+// import BlogPost from './BlogPost';
+import MainContent from './MainContent';
+
+import P5Wrapper from 'react-p5-wrapper';
+// import sketch from './sketches/spinner/sketch';
 
 import {
   BrowserRouter as Router,
@@ -12,19 +16,17 @@ import './App.css';
 
 const App = () => {
 
-  const [blogText, setBlogText] = useState("");
+  const [content, setContent] = useState({});
   const [sidebarState, setSidebarState] = useState(true)
 
   // Shows/hides the dropdown sidebar
   const toggleSidebar = () => {
     setSidebarState(!sidebarState)
-    console.log("pressed", sidebarState)
   }
 
   // Rerender page to include LaTex style maths
   const renderMath = () => {
     if ("MathJax" in window) {
-      console.log("finding mathhhhs")
       window.MathJax.Hub.Queue([
         "Typeset",
         window.MathJax.Hub,
@@ -36,7 +38,7 @@ const App = () => {
   return (
     <Router>
       <div className="sidebar">
-        <div class="callum-header" href="#">
+        <div className="callum-header" href="#">
           <span>Callum Lamont</span>
           <span className="navbar-toggle" onClick={toggleSidebar}>
             <svg viewBox="0 0 100 80" width="40" height="40">
@@ -51,11 +53,14 @@ const App = () => {
           timeout={{ appear: 0, enter: 0, exit: 3000 }}
           appear
           unmountOnExit>
-          <SidebarItems setSidebarState={setSidebarState} setBlogText={setBlogText} />
+          <SidebarItems setSidebarState={setSidebarState} setContent={setContent} />
         </CSSTransition>
       </div >
-      <Route path="/:filepath" render={() => (
+      {/* <Route path="/:filepath" render={() => (
         <BlogPost blogText={blogText} />
+      )} /> */}
+      <Route path="/:filepath" render={() => (
+        <MainContent className="main-content" content={content} />
       )} />
     </Router>
   );

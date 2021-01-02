@@ -19,3 +19,7 @@ echo "\nCREATING JSON WITH FILE INFORMATION"
 echo "============================"
 # Create a JSON that lists the title and location of each HTML file
 ./scripts/create_json_for_htmls.sh
+
+echo "\nADDING P5 SKETCHES TO FILE JSON"
+echo "============================"
+./scripts/add_sketches_to_json.sh
