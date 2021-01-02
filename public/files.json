@@ -86,11 +86,6 @@
           "title": "spinner",
           "file": "./spinner/sketch.js",
           "type": "sketch"
-        },
-        {
-          "title": "another",
-          "file": "./another/sketch.js",
-          "type": "sketch"
         }
       ],
       "topic": "sketches",

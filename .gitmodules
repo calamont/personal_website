@@ -8,3 +8,4 @@
 [submodule "src/sketches"]
 	path = src/sketches
 	url = https://github.com/calamont/sketches.git
+	branch = main

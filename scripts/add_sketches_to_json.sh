@@ -4,6 +4,9 @@
 # react app.
 rm src/sketches/sketches.js
 
+# Delete libraries used directly by any sketches. These should be found in public/libraries.
+rm -r src/sketches/libraries src/sketches/template
+
 # Iterate through each top-level directory in the sketches folder and find the main sketch, which
 # should always be named sketch.js. Use this filepath to create a title for each sketch.
 files_and_titles=$(
