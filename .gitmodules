@@ -5,3 +5,6 @@
 [submodule "public/london-data"]
 	path = public/london-data
 	url = https://github.com/calamont/london-data.git
+[submodule "src/sketches"]
+	path = src/sketches
+	url = https://github.com/calamont/sketches.git
