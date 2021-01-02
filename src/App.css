@@ -2,6 +2,7 @@
   --sidebar-width: 220px;
   --sidebar-height: 100%;
   --display-toggle-button: none;
+  --main-content-margin: 250px;
 }
 
 @media screen and (max-width: 800px) {
@@ -10,6 +11,18 @@
     --sidebar-height: 70px;
     --display-toggle-button: inline;
   }
+}
+
+@media screen and (max-width: 800px) {
+  :root {
+    --main-content-margin: 0px;
+  }
+}
+
+.main-content {
+  margin-left: var(--main-content-margin);
+  margin-top: 0px;
+  margin-bottom: 50px;
 }
 
 * {

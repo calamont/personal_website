@@ -1,7 +1,6 @@
 :root {
   --blog-margin: 100px;
   --blog-margin-top: 60px;
-  --main-content-margin: 250px;
 }
 
 @media screen and (max-width: 1100px) {
@@ -12,15 +11,8 @@
 
 @media screen and (max-width: 800px) {
   :root {
-    --main-content-margin: 0px;
     --blog-margin-top: 100px;
   }
-}
-
-.main-content {
-  margin-left: var(--main-content-margin);
-  margin-top: 0px;
-  margin-bottom: 50px;
 }
 
 .blog-text img {

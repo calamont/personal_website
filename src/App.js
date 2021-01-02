@@ -60,7 +60,9 @@ const App = () => {
         <BlogPost blogText={blogText} />
       )} /> */}
       <Route path="/:filepath" render={() => (
-        <MainContent className="main-content" content={content} />
+        <div className="main-content">
+          <MainContent content={content} />
+        </div>
       )} />
     </Router>
   );
