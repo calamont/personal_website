@@ -128,7 +128,3 @@ rect {
   position: sticky;
   top: 0;
 }
-
-.sidebar a:hover {
-  color: #f1f1f1;
-}

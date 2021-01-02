@@ -70,7 +70,9 @@ const SidebarItems = ({ setSidebarState, setContent }) => {
     <div>
       <div className="topic">
         <div className="topic-title">
-          about
+          <Link to="/about">
+            about
+          </Link>
         </div>
       </div>
       {

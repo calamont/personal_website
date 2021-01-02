@@ -24,6 +24,13 @@
   user-select: none;
 }
 
+.topic-title > a {
+  color: #5e5e5e;
+  text-decoration: inherit;
+  user-select: inherit;
+  cursor: inherit;
+}
+
 .topic-links {
   padding: 8px 8px 8px 15px;
   font-size: 15px;

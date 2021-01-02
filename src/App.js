@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import SidebarItems from './SidebarItems';
 // import BlogPost from './BlogPost';
+import About from './About';
 import MainContent from './MainContent';
 
 import P5Wrapper from 'react-p5-wrapper';
@@ -10,6 +11,7 @@ import P5Wrapper from 'react-p5-wrapper';
 import {
   BrowserRouter as Router,
   Route,
+  Switch
 } from "react-router-dom";
 
 import './App.css';
@@ -56,15 +58,17 @@ const App = () => {
           <SidebarItems setSidebarState={setSidebarState} setContent={setContent} />
         </CSSTransition>
       </div >
-      {/* <Route path="/:filepath" render={() => (
-        <BlogPost blogText={blogText} />
-      )} /> */}
-      <Route path="/:filepath" render={() => (
-        <div className="main-content">
-          <MainContent content={content} />
-        </div>
-      )} />
-    </Router>
+      <div className="main-content">
+        <Switch>
+          <Route path="/about">
+            <About />
+          </Route>
+          <Route path="/:filepath" render={() => (
+            <MainContent content={content} />
+          )} />
+        </Switch>
+      </div>
+    </Router >
   );
 }
 
