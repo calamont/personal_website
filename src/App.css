@@ -36,15 +36,17 @@ body {
 .callum-header {
   margin:0;
   padding: 32px 0px 0px 15px;
-	height: 85px;
-	font-family: 'Rubik';
-	font-weight: 300;
-	font-style: normal;
-	font-size: 24px;
-	letter-spacing: .10em;
-	line-height: 1em;
-	color: #991a1a !important;
-  background-color: #f2f2f2;
+  height: 85px;
+  font-family: 'Dancing Script';
+  font-family: 'Sacramento';
+  font-family: 'Berkshire Swash';
+  font-weight: 600;
+  font-style: normal;
+  font-size: 28px;
+  letter-spacing: .10em;
+  line-height: 1em;
+  color: #b35712 !important;
+  background-color: #ffffff;
 }
 
 .sidebar {
@@ -52,11 +54,12 @@ body {
   height: 100%;
   width: var(--sidebar-width);
   position: fixed;
-  overflow: hidden;
-  color: rgb(0, 0, 0);
+  /* overflow: hidden; */
+  /* color: rgb(0, 0, 0); */
   white-space:nowrap;
   text-overflow: ellipsis;
   z-index: 1000;
+  /* background-color: #ffffff; */
 }
 
 .navbar-toggle {
@@ -106,7 +109,7 @@ rect {
 .sidebar-toggle-enter-done{
   height: 3000px;
   opacity: 1.0;
-  background-color: #f2f2f2;
+  background-color: #ffffff;
   transition: opacity 250ms;
   overflow-y: hidden;
 }
@@ -121,7 +124,7 @@ rect {
 .sidebar-toggle-exit-active{
   opacity: 0.0;
   display: none;
-  background-color: #f2f2f2;
+  background-color: #ffffff;
   transition: opacity 250ms;
   overflow-y: hidden;
   position: -webkit-sticky; /* Safari */

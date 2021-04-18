@@ -6,12 +6,12 @@
 
 .topic-title {
   padding: 8px 8px 8px 15px;
-  color: #5e5e5e;
+  color: #303030;
   display: block;
-	font-family: 'Rubik';
-	font-weight: 300;
-	font-style: normal;
-	font-size: 18px;
+  font-family: 'Kiwi Maru';
+  font-weight: 300;
+  font-style: normal;
+  font-size: 16px;
   letter-spacing: .10em;
   line-height: normal;
   cursor: default;
@@ -33,8 +33,9 @@
 
 .topic-links {
   padding: 8px 8px 8px 15px;
-  font-size: 15px;
-  color: #f4f4f4 !important;
+  font-size: 14px;
+  /* color: #f4f4f4 !important; */
+  color: #5e5e5e !important;
   display: block;
   transition: 0.3s;
   overflow-x: hidden;
@@ -45,15 +46,17 @@
 }
 
 .topic-links a {
-  color: #ffffff !important;
-  font-family: 'Helvetica Neue', sans-serif !important;
-  font-size: 15px !important;
+  /* color: #ffffff !important; */
+  color: #5e5e5e !important;
+  font-family: 'Kiwi Maru', sans-serif !important;
+  font-size: 14px !important;
   text-decoration: none !important;
   line-height: normal !important;
   vertical-align: middle !important;
   display: block;
   overflow-x: hidden;
   text-overflow: ellipsis;
+  margin-left: 10px;
 }
 
 .topic-links-enter-active {
@@ -86,20 +89,20 @@
 .topic-accordion-enter-done{
   max-height: 300px;
   /* background-color: #919191; */
-  background-color: #b4b6bd;
+  /* background-color: #b4b6bd; */
   transition: max-height 700ms, background-color 200ms;
   overflow-y: hidden;
 }
 
 .topic-accordion-exit{
   max-height: 300px;
-  background-color: #b4b6bd;
+  /* background-color: #b4b6bd; */
   overflow-y: hidden;
 }
 
 .topic-accordion-exit-active{
   max-height: 0px;
-  background-color: #b4b6bd;
+  /* background-color: #b4b6bd; */
   transition: max-height 250ms cubic-bezier(.04,.65,.23,.98), background-color 100ms linear;
   overflow-y: hidden;
 }

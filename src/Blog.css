@@ -26,11 +26,24 @@
   margin: 0px;
   margin-bottom: 5px;
   /* margin-left: 20px !important; */
-	font-family: 'Rubik' !important;
-	font-weight: 300 !important;
-	font-style: normal !important;
-	font-size: 27px !important;
-	letter-spacing: .10em !important;
+  font-family: 'Kiwi Maru' !important;
+  font-weight: 500 !important;
+  font-style: normal !important;
+  font-size: 27px !important;
+  letter-spacing: .10em !important;
+}
+
+.blog-text h2 {
+  width: 100%;
+  margin: 0px;
+  margin-bottom: 5px;
+  margin-top: 30px;
+  /* margin-left: 20px !important; */
+  font-family: 'Kiwi Maru' !important;
+  font-weight: 500 !important;
+  font-style: normal !important;
+  font-size: 18px !important;
+  letter-spacing: .10em !important;
 }
 
 .blog-text > h1 {
@@ -42,13 +55,13 @@
   margin-left: var(--blog-margin);
   margin-right: var(--blog-margin);
   margin-top: var(--blog-margin-top);
-  font-family: 'Helvetica Neue', sans-serif;
-	font-weight: 300;
-	font-style: normal;
-	font-size: 14px;
-	letter-spacing: .06em;
-	line-height: 1.8em;
-	text-transform: none;
+  font-family: 'Raleway';
+  font-weight: 300;
+  /* font-style: normal; */
+  font-size: 14px;
+  letter-spacing: .06em;
+  line-height: 1.8em;
+  text-transform: none;
   color: rgb(16, 16, 16);
   resize: inherit !important;
   /* color: rgba(29,29,29,.7); */
