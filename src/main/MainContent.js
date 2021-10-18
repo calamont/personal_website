@@ -3,12 +3,11 @@ import { unmountComponentAtNode, render } from "react-dom";
 
 import * as sketches from './sketches/sketches';
 
-import './Blog.css';
 import './Notebook.css';
+import './Blog.css';
 
 const MainContent = ({ content }) => {
 
-  console.log(content.title)
   if (content.type === "text") {
     return <BlogPost content={content} />
   } else if (content.type === "sketch") {

@@ -1,0 +1,49 @@
+.sidebar {
+  margin: 1.5rem 0px 0px 1.5rem;
+  font-family: "Kiwi Maru";
+  font-weight: 200;
+  grid-area: Sidebar;
+  color: #642f2f;
+  overflow-y: hidden;
+}
+
+/* TODO: Why doesn't color inherit work here? Is there an immediate parent that */
+/* its inheriting the wrong colour from? */
+.sidebar a, a:link, a:visited, a:hover, a:active {
+  /* color: inherit; */
+  color: #642f2f;
+  text-decoration: none;
+}
+
+.sidebar-title {
+  font-size: 16px;
+}
+
+.sidebar-links {
+  font-size: 13px;
+  padding-left: 10px;
+  height: 30px;
+  max-height: 0px;
+  background-color: #ffffff;
+  color: #ffffff;
+  transition: max-height 0.5s, color 0.5s;
+}
+
+/* TODO: There is an issue that, although we change the max-height, the actual */
+/* height of the sidebar-links stays at 30px, which causes poor rendering of long */
+/* titles that need to wrap around. I am unsure if there is a solution to this issue, */
+/* but a quick fix could be to stop wrapping text and change the overflow properties */
+/* to ellipses. */
+.sidebar-input:checked ~ .sidebar-links {
+  max-height: 50px;
+  /* margin: 10px 0px 10px 0px; */
+  color: #fff000;
+}
+
+/* Clip overflowing titles with ellipses */
+.sidebar-links a {
+  display: block;
+  white-space: nowrap;
+  text-overflow: " . . .";
+  overflow: hidden;
+}

@@ -1,133 +1,64 @@
 :root {
-  --sidebar-width: 220px;
-  --sidebar-height: 100%;
-  --display-toggle-button: none;
-  --main-content-margin: 250px;
-}
-
-@media screen and (max-width: 800px) {
-  :root {
-    --sidebar-width: 100%;
-    --sidebar-height: 70px;
-    --display-toggle-button: inline;
-  }
-}
-
-@media screen and (max-width: 800px) {
-  :root {
-    --main-content-margin: 0px;
-  }
-}
-
-.main-content {
-  margin-left: var(--main-content-margin);
-  margin-top: 0px;
-  margin-bottom: 50px;
+  --sidebar-visible: 0;
+  --sidebar-height: calc(100vh * var(--sidebar-visible));
 }
 
 * {
   box-sizing: border-box;
 }
 
-body {
-  padding: 0px !important;
+@media only screen and (max-width: 700px) {
+  /* Initially hide the sidebar if the window width becomes too narrow */
+  :root {
+    --sidebar-visible: 0;
+  }
+
+ .App {
+  grid-template-columns: 1fr;
+  grid-template-rows: 3em calc(100vh * var(--sidebar-visible)) 1fr;
+  grid-template-areas:
+    "Header"
+    "Sidebar"
+    "Main";
+  }
+
+  /* Expand Sidebar grid section when the user clicks the dropdown icon */
+  .header-accordion:checked ~ .App {
+    --sidebar-visible: 1;
+    transition: 0.5s;
+  }
 }
 
-.callum-header {
-  margin:0;
-  padding: 32px 0px 0px 15px;
-  height: 85px;
-  font-family: 'Dancing Script';
-  font-family: 'Sacramento';
-  font-family: 'Berkshire Swash';
-  font-weight: 600;
-  font-style: normal;
-  font-size: 28px;
-  letter-spacing: .10em;
-  line-height: 1em;
-  color: #b35712 !important;
-  background-color: #ffffff;
+@media only screen and (min-width: 700px) {
+  :root {
+    --sidebar-visible: 1;
+  }
+  .App {
+    grid-template-columns: 0.5fr 1.5fr;
+    grid-template-rows: 3em 100vh 1fr;
+    grid-template-areas:
+      "Header Header"
+      "Sidebar Main"
+      "Sidebar Main";
+  }
+}
+
+.App {
+  display: grid;
+}
+
+.main {
+  grid-area: Main;
+}
+
+.header {
+  grid-area: Header;
 }
 
 .sidebar {
-  top: 0px;
-  height: 100%;
-  width: var(--sidebar-width);
-  position: fixed;
-  /* overflow: hidden; */
-  /* color: rgb(0, 0, 0); */
-  white-space:nowrap;
-  text-overflow: ellipsis;
-  z-index: 1000;
-  /* background-color: #ffffff; */
+  grid-area: Sidebar;
 }
 
-.navbar-toggle {
-  float: right;
-  display: var(--display-toggle-button);
-  margin-right: 30px;
-  cursor: default;
-  border-radius: 10px;
-  color: red;
-  /* The additions below prevent selection of the text */
-  -webkit-touch-callout: none; /* iOS Safari */
-  -webkit-user-select: none; /* Safari */
-  -khtml-user-select: none; /* Konqueror HTML */
-  -moz-user-select: none; /* Old versions of Firefox */
-  -ms-user-select: none; /* Internet Explorer/Edge */
-  user-select: none;
-}
-
-rect {
-  fill: #bdbcbc;;
-  border-radius: 50px;
-}
-
-.sidebar-toggle {
-  overflow-y: hidden;
-  opacity: 1.0;
-  height: 3000px;
-}
-
-.sidebar-toggle-appear {
-  opacity: 0.0;
-  transition: opacity 700ms;
-  position: -webkit-sticky; /* Safari */
-  position: sticky;
-  top: 0;
-  overflow-y: hidden;
-}
-
-.sidebar-toggle-enter{
-  opacity: 0.0;
-  position: -webkit-sticky; /* Safari */
-  position: sticky;
-  top: 0;
-  overflow-y: hidden;
-}
-
-.sidebar-toggle-enter-done{
-  height: 3000px;
-  opacity: 1.0;
-  background-color: #ffffff;
-  transition: opacity 250ms;
-  overflow-y: hidden;
-}
-
-.sidebar-toggle-exit{
-  height: 3000px;
-  opacity: 1.0;
-  background-color: #f2f2f2;
-  overflow-y: hidden;
-}
-
-.sidebar-toggle-exit-active{
-  opacity: 0.0;
+.header-accordion {
   display: none;
-  background-color: #ffffff;
-  transition: opacity 250ms;
-  overflow-y: hidden;
-  position: -webkit-sticky; /* Safari */
-  position: sticky;
-  top: 0;
 }
