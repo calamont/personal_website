@@ -23,6 +23,8 @@
   }
 
   /* Expand Sidebar grid section when the user clicks the dropdown icon */
+  /* TODO: Hide scroll bar on the side when we expand the grid section, perhaps */
+  /* using overflow: hidden. */
   .header-accordion:checked ~ .App {
     --sidebar-visible: 1;
     transition: 0.5s;

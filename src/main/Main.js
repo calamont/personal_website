@@ -4,6 +4,7 @@ import About from './About';
 import MainContent from './MainContent';
 import './Main.css';
 
+// TODO: The sketches README file cannot be found
 const Main = ({ content }) => {
   return (
     <div className="main">
