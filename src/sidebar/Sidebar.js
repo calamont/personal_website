@@ -1,15 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import "../Accordion.css";
-// import "./Header.css";
 import "./Sidebar.css";
 
-const Sidebar = ({ setContent }) => {
+const closeAccordions = () => {
+  const cbs = document.querySelectorAll('input');
+  cbs.forEach((cb) => {
+    cb.checked = false;
+  });
+}
+
+const Sidebar = () => {
 
   const [topicList, setTopicList] = useState([]);
-  // const [accordionState, setAccordionState] = useState({});
-  // const [testState, setTestState] = useState(true);
 
+  // TODO: The information that is listed in the sidebar is stored in an extrenal
+  // JSON file, which needs to be loaded. Is there a cleaner approach to this?
   useEffect(() => {
     fetch(process.env.PUBLIC_URL + `/files.json`)
       .then(response => response.json())
@@ -17,17 +23,10 @@ const Sidebar = ({ setContent }) => {
         setTopicList(fileList.topics);
         fileList.topics.forEach((topic) => {
           let topicState = {};
-          topicState[topic.topic] = false;
-          // setAccordionState(Object.assign(accordionState, topicState))
+          topicState[topic.topic_path] = false;
         })
       })
   }, [])
-
-  // Change blog text when clicking on a link
-  const changeContent = (fileObj) => {
-    setContent(fileObj);
-    // resizeListener();  // Is this needed here? If not we can get rid of this whole function.
-  }
 
   return (
     <div className="sidebar accordion-links" tabIndex={0}>
@@ -39,7 +38,7 @@ const Sidebar = ({ setContent }) => {
       {
         topicList.map(topic => {
           return (
-            <SidebarItem topic={topic} changeContent={changeContent} />
+            <SidebarItem topic={topic} />
           )
         })
       }
@@ -47,37 +46,19 @@ const Sidebar = ({ setContent }) => {
   )
 }
 
-const closeAccordions = () => {
-  const cbs = document.querySelectorAll('input');
-  cbs.forEach((cb) => {
-    cb.checked = false;
-  });
-}
-
-const SidebarItem = ({ topic, changeContent }) => {
-
-  const onLinkClick = (file) => {
-    closeAccordions();
-    // update the selected text
-    changeContent(file);
-  }
+const SidebarItem = ({ topic }) => {
 
   return (
     <div>
-      <input type="checkbox" className="sidebar-input accordion-input" name="example_accordion" id={topic.topic} tabIndex={0} />
+      <input type="checkbox" className="sidebar-input accordion-input" id={topic.topic} tabIndex={0} />
       <label for={topic.topic} className="sidebar-title accordion-title" tabIndex={0}>
         {topic.topic}
       </label>
-      <div className="sidebar-links accordion-links" onClick={() => onLinkClick(topic.readme)}>
-        <Link to={`/${topic.readme.file}`}>
-          {topic.readme.title}
-        </Link>
-      </div>
       {
         topic.files.map((entry) => {
           return (
-              <div className="sidebar-links accordion-links" onClick={() => onLinkClick(entry)}>
-                <Link to={`/${entry.file}`}>
+              <div className="sidebar-links accordion-links" onClick={closeAccordions}>
+                <Link to={`/${topic.topic_path}/${entry.file}`}>
                   {entry.title}
                 </Link>
               </div>
@@ -86,40 +67,6 @@ const SidebarItem = ({ topic, changeContent }) => {
       }
     </div>
   )
-}
-
-const TopicLinks = ({ topic, changeContent }) => {
-
-  const onLinkClick = (file) => {
-    // close all open accordions
-    const cbs = document.querySelectorAll('input');
-    cbs.forEach((cb) => {
-      cb.checked = false;
-    });
-    // update the selected text
-    changeContent(file)
-  }
-
-  return (
-    <div>
-      <div onClick={() => onLinkClick(topic.readme)}>
-        <Link to={`/${topic.readme.file}`}>
-          {topic.readme.title}
-        </Link>
-      </div>
-      {
-        topic.files.map((entry) => {
-          return (
-              <div onClick={() => onLinkClick(entry)}>
-                <Link to={`/${entry.file}`}>
-                  {entry.title}
-                </Link>
-              </div>
-          );
-        })
-      }
-    </div>
-  );
 }
 
 export default Sidebar;

@@ -1,11 +1,11 @@
 import React from 'react'
 import { Route, Switch } from "react-router-dom";
 import About from './About';
-import MainContent from './MainContent';
+import { MainContent, LondonNLP, Tester, BlogPost } from './MainContent';
 import './Main.css';
 
 // TODO: The sketches README file cannot be found
-const Main = ({ content }) => {
+const Main = () => {
   return (
     <div className="main">
       <div className="main-content">
@@ -13,9 +13,9 @@ const Main = ({ content }) => {
           <Route path="/about">
             <About />
           </Route>
-          <Route path="/:filepath" render={() => (
-            <MainContent content={content} />
-          )} />
+          <Route path="/:topic/:file">
+            <BlogPost />
+          </Route>
         </Switch>
       </div>
     </div>

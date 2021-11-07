@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { unmountComponentAtNode, render } from "react-dom";
+import { useParams } from "react-router-dom";
 
 import * as sketches from './sketches/sketches';
 
 import './Notebook.css';
 import './Blog.css';
 
+
 // TODO: The ordering of notebooks by date is not working
-const MainContent = ({ content }) => {
+export const MainContent = ({ content }) => {
 
   if (content.type === "text") {
     return <BlogPost content={content} />
@@ -18,11 +20,14 @@ const MainContent = ({ content }) => {
   }
 }
 
-const BlogPost = ({ content }) => {
+export const BlogPost = () => {
 
+  const params = useParams();
   const [blogText, setBlogText] = useState("");
 
-  fetch(process.env.PUBLIC_URL + `/${content.file}`)
+  // TODO: Storing the relevant HTML files in public/ seems quite ghetto. Should
+  // I fetch files from a server?
+  fetch(process.env.PUBLIC_URL + `/${params.topic}/${params.file}.html`)
     .then(response => response.text())
     .then(text => setBlogText(text))
     .catch(err => console.log("ERROR", err))
@@ -61,4 +66,4 @@ class P5Wrapper extends React.Component {
   }
 }
 
-export default MainContent;
+// export default MainContent;

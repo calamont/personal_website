@@ -12,9 +12,8 @@ import './App.css';
 
 const App = () => {
 
-  const [content, setContent] = useState({});
-
   // Rerender page to include LaTex style maths
+  // TODO: Is this necessary and if so, can it be handled anywhere else?
   const renderMath = () => {
     if ("MathJax" in window) {
       window.MathJax.Hub.Queue([
@@ -31,8 +30,8 @@ const App = () => {
         <input type="checkbox" className="header-accordion" name="header-accordion" id={"header-accordion"} tabIndex={0}/>
         <div className="App">
           <Header/>
-          <Sidebar setContent={setContent}/>
-          <Main content={content}/>
+          <Sidebar/>
+          <Main/>
         </div>
       </div>
     </Router >
