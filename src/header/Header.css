@@ -12,6 +12,12 @@
   align-items: center;
 }
 
+/* TODO: Is there a better way to group these descendants? */
+.header a, .header a:link, .header a:visited, .header a:hover, .header a:active {
+  cursor: default;
+  color: #b35712;
+  text-decoration: none;
+}
 
 /* Create a cross icon to illustrate the presence of a drop down menu on
  * small screens. Animate this to confirm a click from the user */

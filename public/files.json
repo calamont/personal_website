@@ -4,31 +4,7 @@
       "files": [
         {
           "title": "README",
-          "file": "README",
-          "type": "text",
-          "date": "2018-02-12"
-        },
-        {
-          "title": "The Numbers",
-          "file": "numbers",
-          "type": "text",
-          "date": "2018-02-12"
-        },
-        {
-          "title": "The Words",
-          "file": "words",
-          "type": "text",
-          "date": "2018-04-07"
-        }
-      ],
-      "topic": "scraping london rentals",
-      "topic_path": "london-nlp"
-    },
-    {
-      "files": [
-        {
-          "title": "README",
-          "file": "README",
+          "file": "readme",
           "type": "text",
           "date": "2018-02-12"
         },
@@ -43,6 +19,12 @@
           "file": "2_words",
           "type": "text",
           "date": "2018-04-07"
+        },
+        {
+          "title": "Generating Text",
+          "file": "3_generation",
+          "type": "text",
+          "date": "2022-02-16"
         }
       ],
       "topic": "london-data",
@@ -52,7 +34,7 @@
       "files": [
         {
           "title": "README",
-          "file": "README",
+          "file": "readme",
           "type": "text",
           "date": "2018-05-30"
         },
@@ -112,13 +94,13 @@
       "files": [
         {
           "title": "README",
-          "file": "README",
+          "file": "readme",
           "type": "text",
-          "date": "2018-01-01"
+          "date": "2018-05-30"
         },
         {
-          "title": "spinner",
-          "file": "./spinner/sketch.js",
+          "title": "Dangling Triangles",
+          "file": "spinner/sketch.js",
           "type": "sketch"
         }
       ],

@@ -1,16 +1,16 @@
+import Matter from 'matter-js';
+
 class Spinner {
 
-  Matter = window.Matter;
-
   constructor(x, y, w, h, world) {
-    this.body = window.Matter.Bodies.rectangle(x, y / 2, w, h);
+    this.body = Matter.Bodies.rectangle(x, y / 2, w, h);
     this.body.collisionFilter.group = -1;
     this.body.friction = 0;
     this.body.frictionAir = 0.01;
     this.body.frictionStatic = 0;
     this.w = w;
     this.h = h;
-    // window.Matter.World.add(world, this.body)
+    // Matter.World.add(world, this.body)
 
     let options = {
       pointA: { x: x, y: y / 2 },
@@ -19,8 +19,8 @@ class Spinner {
       length: 0,
       stiffness: 0.9
     }
-    this.constraint = window.Matter.Constraint.create(options);
-    window.Matter.World.add(world, [this.body, this.constraint])
+    this.constraint = Matter.Constraint.create(options);
+    Matter.World.add(world, [this.body, this.constraint])
   }
 
   show = function (s, filled) {

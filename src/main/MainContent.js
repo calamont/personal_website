@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { unmountComponentAtNode, render } from "react-dom";
 import { useParams } from "react-router-dom";
 
 import * as sketches from './sketches/sketches';
@@ -8,7 +7,6 @@ import './Notebook.css';
 import './Blog.css';
 
 
-// TODO: The ordering of notebooks by date is not working
 export const MainContent = ({ content }) => {
 
   if (content.type === "text") {

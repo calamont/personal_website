@@ -1,12 +1,14 @@
+
 // Uncomment to run in react
 import Spinner from "./Spinner"
+import Matter from 'matter-js';
 
 const sketch = (s) => {
 
-  var Engine = window.Matter.Engine,
-    // Render = window.Matter.Render,
-    World = window.Matter.World,
-    Bodies = window.Matter.Bodies;
+  var Engine = Matter.Engine,
+    // Render = Matter.Render,
+    World = Matter.World,
+    Bodies = Matter.Bodies;
 
   var engine;
   var world;
@@ -40,16 +42,16 @@ const sketch = (s) => {
         stiffness: 0.1,
         damping: 0
       }
-      let constraint = window.Matter.Constraint.create(options)
+      let constraint = Matter.Constraint.create(options)
       World.add(world, constraint)
     }
 
-    let canvasMouse = window.Matter.Mouse.create(canvas.elt);
+    let canvasMouse = Matter.Mouse.create(canvas.elt);
     canvasMouse.pixelRatio = s.pixelDensity();
     let options = {
       mouse: canvasMouse
     }
-    mConstraint = window.Matter.MouseConstraint.create(engine, options)
+    mConstraint = Matter.MouseConstraint.create(engine, options)
     World.add(world, mConstraint)
   };
 

@@ -9,7 +9,7 @@
 
 /* TODO: Why doesn't color inherit work here? Is there an immediate parent that */
 /* its inheriting the wrong colour from? */
-.sidebar a, a:link, a:visited, a:hover, a:active {
+.sidebar a, .sidebar a:link, .sidebar a:visited, .sidebar a:hover, .sidebar a:active {
   /* color: inherit; */
   color: #642f2f;
   text-decoration: none;
@@ -17,6 +17,8 @@
 
 .sidebar-title {
   font-size: 16px;
+  position: relative;
+  cursor: pointer;
 }
 
 .sidebar-links {
@@ -27,6 +29,12 @@
   background-color: #ffffff;
   color: #ffffff;
   transition: max-height 0.5s, color 0.5s;
+  display: block;
+  overflow: hidden;
+}
+
+.sidebar-input {
+  display: none;
 }
 
 /* TODO: There is an issue that, although we change the max-height, the actual */
@@ -36,7 +44,6 @@
 /* to ellipses. */
 .sidebar-input:checked ~ .sidebar-links {
   max-height: 50px;
-  /* margin: 10px 0px 10px 0px; */
   color: #fff000;
 }
 

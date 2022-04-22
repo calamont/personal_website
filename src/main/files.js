@@ -1,84 +1,106 @@
-{
+files = {
   "topics": [
     {
       "files": [
         {
-          "title": "The Words",
-          "file": "london-data/markdown/2_words.html",
+          "title": "README",
+          "file": "README",
           "type": "text",
-          "date": "2018-04-07"
+          "date": "2018-02-12"
         },
         {
           "title": "The Numbers",
-          "file": "london-data/markdown/1_numbers.html",
+          "file": "1_numbers",
           "type": "text",
           "date": "2018-02-12"
+        },
+        {
+          "title": "The Words",
+          "file": "2_words",
+          "type": "text",
+          "date": "2018-04-07"
         }
       ],
       "topic": "london-data",
-      "readme": {
-        "title": "README",
-        "file": "london-data/README.html",
-        "type": "text"
-      }
+      "topic_path": "london-data"
     },
     {
       "files": [
         {
+          "title": "README",
+          "file": "README",
+          "type": "text",
+          "date": "2018-05-30"
+        },
+        {
           "title": "So what is the point of engineering research in academia?",
-          "file": "thoughts/academia_research.html",
+          "file": "academia_research",
           "type": "text",
           "date": "2018-05-30"
         },
         {
           "title": "A Roll of Dice",
-          "file": "thoughts/a_roll_of_dice.html",
+          "file": "a_roll_of_dice",
           "type": "text",
           "date": "2017-07-30"
         },
         {
           "title": "Biases and Beliefs",
-          "file": "thoughts/biases_and_beliefs.html",
+          "file": "biases_and_beliefs",
           "type": "text",
           "date": "2016-12-18"
         },
         {
           "title": "Questioning our choices",
-          "file": "thoughts/questioning_our_choices.html",
+          "file": "questioning_our_choices",
           "type": "text",
           "date": "2016-09-29"
         },
         {
           "title": "Technobablyon",
-          "file": "thoughts/technobabylon.html",
+          "file": "technobabylon",
           "type": "text",
           "date": "2016-06-25"
         },
         {
           "title": "Switching Seasons",
-          "file": "thoughts/switching_seasons.html",
+          "file": "switching_seasons",
           "type": "text",
           "date": "2016-04-10"
         },
         {
           "title": "Our Resilient Minds",
-          "file": "thoughts/our_resilient_minds.html",
+          "file": "our_resilient_minds",
           "type": "text",
           "date": "2016-03-20"
         },
         {
           "title": "In Defence of Dogs",
-          "file": "thoughts/dogs.html",
+          "file": "dogs",
           "type": "text",
           "date": "2016-02-20"
         }
       ],
       "topic": "thoughts",
-      "readme": {
-        "title": "README",
-        "file": "thoughts/README.html",
-        "type": "text"
-      }
+      "topic_path": "thoughts"
+    },
+    {
+      "files": [
+        {
+          "title": "README",
+          "file": "README",
+          "type": "text",
+          "date": "2018-01-01"
+        },
+        {
+          "title": "spinner",
+          "file": "spinner/sketch.js",
+          "type": "sketch"
+        }
+      ],
+      "topic": "sketches",
+      "topic_path": "sketches"
     }
   ]
 }
+
