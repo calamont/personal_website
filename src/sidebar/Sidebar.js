@@ -6,75 +6,47 @@ import "./Sidebar.css";
 
 const Sidebar = ({ setContent }) => {
 
-  const [topicList, setTopicList] = useState([]);
-  // const [accordionState, setAccordionState] = useState({});
-  // const [testState, setTestState] = useState(true);
+  const [fileList, setFileList] = useState([]);
 
   useEffect(() => {
     fetch(process.env.PUBLIC_URL + `/files.json`)
       .then(response => response.json())
       .then(fileList => {
-        setTopicList(fileList.topics);
-        fileList.topics.forEach((topic) => {
-          let topicState = {};
-          topicState[topic.topic] = false;
-          // setAccordionState(Object.assign(accordionState, topicState))
-        })
+        setFileList(fileList.files)
       })
   }, [])
 
   // Change blog text when clicking on a link
   const changeContent = (fileObj) => {
     setContent(fileObj);
-    // resizeListener();  // Is this needed here? If not we can get rid of this whole function.
   }
 
   return (
     <div className="sidebar accordion-links" tabIndex={0}>
-      <div className="sidebar-title" onClick={closeAccordions}>
+      <div className="sidebar-title">
         <Link to="/about">
           about
         </Link>
       </div>
-      {
-        topicList.map(topic => {
-          return (
-            <SidebarItem topic={topic} changeContent={changeContent} />
-          )
-        })
-      }
+      <SidebarItem topic={fileList} changeContent={changeContent} />
     </div>
   )
-}
-
-const closeAccordions = () => {
-  const cbs = document.querySelectorAll('input');
-  cbs.forEach((cb) => {
-    cb.checked = false;
-  });
 }
 
 const SidebarItem = ({ topic, changeContent }) => {
 
   const onLinkClick = (file) => {
-    closeAccordions();
-    // update the selected text
     changeContent(file);
   }
 
   return (
     <div>
-      <input type="checkbox" className="sidebar-input accordion-input" name="example_accordion" id={topic.topic} tabIndex={0} />
-      <label for={topic.topic} className="sidebar-title accordion-title" tabIndex={0}>
-        {topic.topic}
+      <input type="checkbox" className="sidebar-input accordion-input" name="example_accordion" id={"blog-sidebar"} tabIndex={0} />
+      <label for="blog-sidebar" className="sidebar-title accordion-title" tabIndex={0}>
+        blog
       </label>
-      <div className="sidebar-links accordion-links" onClick={() => onLinkClick(topic.readme)}>
-        <Link to={`/${topic.readme.file}`}>
-          {topic.readme.title}
-        </Link>
-      </div>
       {
-        topic.files.map((entry) => {
+        topic.map((entry) => {
           return (
               <div className="sidebar-links accordion-links" onClick={() => onLinkClick(entry)}>
                 <Link to={`/${entry.file}`}>
@@ -86,40 +58,6 @@ const SidebarItem = ({ topic, changeContent }) => {
       }
     </div>
   )
-}
-
-const TopicLinks = ({ topic, changeContent }) => {
-
-  const onLinkClick = (file) => {
-    // close all open accordions
-    const cbs = document.querySelectorAll('input');
-    cbs.forEach((cb) => {
-      cb.checked = false;
-    });
-    // update the selected text
-    changeContent(file)
-  }
-
-  return (
-    <div>
-      <div onClick={() => onLinkClick(topic.readme)}>
-        <Link to={`/${topic.readme.file}`}>
-          {topic.readme.title}
-        </Link>
-      </div>
-      {
-        topic.files.map((entry) => {
-          return (
-              <div onClick={() => onLinkClick(entry)}>
-                <Link to={`/${entry.file}`}>
-                  {entry.title}
-                </Link>
-              </div>
-          );
-        })
-      }
-    </div>
-  );
 }
 
 export default Sidebar;
