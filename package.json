@@ -9,14 +9,12 @@
     "p5": "^1.1.9",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-markdown": "^4.3.1",
     "react-p5-wrapper": "^2.3.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.3",
+    "react-scripts": "^5.0.1",
     "react-transition-group": "^4.4.1"
   },
   "scripts": {
-    "prestart": "./scripts/preprocess_public.sh",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
