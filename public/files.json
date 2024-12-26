@@ -1,6 +1,12 @@
 {
   "files": [
     {
+      "title": "A Guide for Choosing the Right Database",
+      "file": "blog/data_models.html",
+      "type": "text",
+      "date": "2024-12-23"
+    },
+    {
       "title": "NLP with London Rental Data: Part 3",
       "file": "blog/3_text_generation.html",
       "type": "text",
