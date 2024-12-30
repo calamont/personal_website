@@ -1,37 +1,77 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import './Blog.css';
 
 const About = () => {
   return (
     <div className="blog-text">
-      {/* <h1>Abo</h1> */}
+      <h2>About me</h2>
       <p>
-        Well heck...
+        Hey 👋 I'm Callum, A software engineer from Melbourne, Australia.
         <br />
         <br />
-        Took you long enough to find this site and say hi!
+        First, a quick bio. After my undergrad I moved to London for a PhD in Biomedical
+        Engineering. This was a great experience, but I decided academia was not for me. So I
+        transitioned to a job in machine learning at a startup. Now I am a backend software engineer
+        and genuinely love learning about databases, clean code, vim, and how to not let stand ups
+        blow out to 40 minutes every morning.
         <br />
-        <br />
-        No, no, come in. I'm still in the process of getting the place all set up so forgive me if
-        there ain't much to do just yet.
-        <br />
-        <br />
-        Over on the sidebar is my collection of random side projects I've been toying around with.
-        Also got there a few bits of writings that I scribbled down when feeling serious. Click
-        around and see if anything takes your fancy. More detail is given in the README docs for
-        each section.
-        <br />
-        <br />
-        I'm not one for shameless self promotion, so if want to know more about me see my{' '}
-        <a href="https://github.com/calamont">GitHub</a>,{' '}
-        <a href="https://www.linkedin.com/in/callum-lamont">LinkedIn</a>, or{' '}
-        <a href="https://www.google.com/search?q=callum+lamont">Google search results</a>.<br />
-        <br />
-        Have a merry day ✌️
-        <br />
-        Cal
+        <br />I also love playing guitar, learning spanish, and cooking. Hit me up if you're ever in
+        Melbourne!
       </p>
+      <h2>Thing's I've written</h2>
+      <h4>Software and tech</h4>
+      <ul>
+        <li>
+          <Link to="/blog">My personal blog</Link>
+        </li>
+        <li>
+          <a href="https://technology.complyadvantage.com/four-concepts-to-get-started-with-elasticsearch/">
+            4 concepts to get started with Elasticsearch
+          </a>
+        </li>
+        <li>
+          <a href="https://dev.to/calamont/how-to-setup-vim-for-kotlin-development-4eoc">
+            How to Setup Vim for Kotlin Development
+          </a>
+        </li>
+      </ul>
+      <h4>Academia</h4>
+      <ul>
+        <li>
+          <a href="https://iopscience.iop.org/article/10.1088/1741-2552/abf0d6">
+            Silicone encapsulation of thin-film SiOx, SiOxNy and SiC for modern electronic medical
+            implants: A comparative long-term ageing study
+          </a>
+        </li>
+        <li>
+          <a href="https://discovery.ucl.ac.uk/id/eprint/10100135/">
+            Non-Hermetic Protection of Thin-Film Metallisation Layers Intended for Implanted
+            Electronic Medical Devices
+          </a>
+        </li>
+        <li>
+          <a href="https://ieeexplore.ieee.org/document/8717034">
+            A Bayesian Demonstration of Reliability for Encapsulated Implanted Electronics
+          </a>
+        </li>
+        <li>
+          <a href="https://www.researchgate.net/publication/272405631_Tuning_the_viscosity_of_halogen_free_bulk_heterojunction_inks_for_inkjet_printed_organic_solar_cells">
+            Tuning the viscosity of halogen free bulk heterojunction inks for inkjet printed organic
+            solar cells
+          </a>
+        </li>
+      </ul>
+      <h2>Contact</h2>
+      <ul>
+        <li>
+          <a href="https://github.com/calamont">GitHub</a>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/in/callum-lamont">LinkedIn</a>
+        </li>
+      </ul>
     </div>
   );
 };
