@@ -1,9 +1,7 @@
 .main {
   width: clamp(10ch, 90%, 100ch);
-  margin: 1rem 1rem 0rem 1rem;
-  font-family: "Raleway";
+  margin: 2rem 1rem 0rem 1rem;
+  font-family: 'Raleway';
   font-size: 0.9em;
   letter-spacing: 0.05em;
-  grid-area: Main;
-  z-index: 100;
 }

@@ -1,43 +1,27 @@
 .header {
-  padding: 2.0rem 0 0 1.0rem;
-  font-family: 'Satisfy';
-  font-weight: 600;
-  font-style: normal;
-  font-size: 2em;
-  color: #b35712;
-  grid-area: Header;
-  overflow-x: display;
+  padding-top: 1rem;
   display: flex;
-  justify-content: space-between;
   align-items: center;
 }
 
-
-/* Create a cross icon to illustrate the presence of a drop down menu on
- * small screens. Animate this to confirm a click from the user */
-.icon {
-  display: inline;
-  margin: 0 3rem 0 0;
-  width: 16px;
-  height: 16px;
+.header-title {
+  padding: 0 2rem 0 2rem;
+  font-family: 'Satisfy';
+  font-weight: 600;
+  font-size: 2em;
+  color: #b35712;
 }
 
-@media only screen and (min-width: 700px) {
-  .icon {
-    display: none;
-  }
+.header-links {
+  font-family: 'Kiwi Maru';
+  color: #642f2f;
 }
 
-.vertical-cross {
-  transform-origin: 50% 50%;
-  transform: rotate(calc(180deg - var(--sidebar-visible) * 180deg));
-  background-color: #990000;
-  transition: 0.5s;
-}
-
-.horizontal-cross {
-  transform-origin: 50% 50%;
-  transform: rotate(calc(270deg - var(--sidebar-visible) * 270deg));
-  background-color: #990000;
-  transition: 0.5s;
+.header a,
+a:link,
+a:visited,
+a:hover,
+a:active {
+  color: #642f2f;
+  text-decoration: none;
 }

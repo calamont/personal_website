@@ -1,0 +1,58 @@
+{
+  "files": [
+    {
+      "title": "Generating rental listings with AI",
+      "slug": "london-data-text-generation",
+      "file": "blog/3_text_generation.html",
+      "date": "16-02-2022"
+    },
+    {
+      "title": "What is the Point of Engineering Research in Academia",
+      "slug": "eng-research-academia",
+      "file": "blog/academia_research.html",
+      "date": "30-05-2018"
+    },
+    {
+      "title": "NLP analysis of London Rental Listings",
+      "slug": "london-data-nlp-analysis",
+      "file": "blog/2_words.html",
+      "date": "07-04-2018"
+    },
+    {
+      "title": "Scraping and Analysing 27,000 London Rental Listings",
+      "slug": "london-data-property-analysis",
+      "file": "blog/1_numbers.html",
+      "date": "12-02-2018"
+    },
+    {
+      "title": "A Roll of Dice",
+      "slug": "a-roll-of-dice",
+      "file": "blog/a_roll_of_dice.html",
+      "date": "30-07-2017"
+    },
+    {
+      "title": "Biases and Beliefs",
+      "slug": "biases-and-beliefs",
+      "file": "blog/biases_and_beliefs.html",
+      "date": "18-12-2016"
+    },
+    {
+      "title": "Questioning our choices",
+      "slug": "questioning-our-choices",
+      "file": "blog/questioning_our_choices.html",
+      "date": "29-09-2016"
+    },
+    {
+      "title": "Technobablyon",
+      "slug": "technobabylon",
+      "file": "blog/technobabylon.html",
+      "date": "25-06-2016"
+    },
+    {
+      "title": "Our Resilient Minds",
+      "slug": "our-resilient-minds",
+      "file": "blog/our_resilient_minds.html",
+      "date": "20-03-2016"
+    }
+  ]
+}
