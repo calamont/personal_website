@@ -33,9 +33,9 @@ jobs:
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1.7.0
       with:
-        role-to-assume: arn:aws:iam::128707826079:role/DeployPersonalWebsite-GitHubAction
+        role-to-assume: ${{ secrets.AWS_DEPLOY_ARN }}
         role-session-name: GitHub_to_AWS_via_FederatedOIDC
         aws-region: ${{ env.AWS_REGION }}
 
-    - name: Sync build to s3
+    - name: Copy files to the test website with the AWS CLI
       run: aws s3 sync build s3://callumlamont.com --delete
