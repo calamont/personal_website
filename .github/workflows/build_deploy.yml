@@ -37,5 +37,5 @@ jobs:
         role-session-name: GitHub_to_AWS_via_FederatedOIDC
         aws-region: ${{ env.AWS_REGION }}
 
-    - name: Copy files to the test website with the AWS CLI
-      run: aws s3 sync build s3://callumlamont.com
+    - name: Sync build to s3
+      run: aws s3 sync build s3://callumlamont.com --delete
