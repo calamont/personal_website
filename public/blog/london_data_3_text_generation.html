@@ -1,6 +1,6 @@
 <h1 id="generating-property-listings-with-machine-learning">Generating
 Property Listings with Machine Learning</h1>
-<p><time datetime="2021-04-10 07:00">10th Apr 2021</time></p>
+<p><time datetime="2022-02-16 07:00">16th Feb 2022</time></p>
 <p>After scraping a dataset of rental listings, one of my first thoughts
 was to use this to train a neural network to generate property
 descriptions. I didn’t think this automation would be useful for anyone,
@@ -68,36 +68,43 @@ a few examples here, but feel free to peruse the 80+ test examples I run
 the model over (that is, examples that the model did not see during the
 training period).</p>
 <p><em>translate Hashtags to English: #Elephant_and_Castle #rent_645
-#professional #4_bedrooms #postcode_SE1 #flat</em> &gt; Hello! We have a
-double room available in our flat in Elephant and Castle. The room is
-fully furnished with a double bed, wardrobe, chest of drawers, desk and
-chair. The flat is on the first floor of a modern building with lift
-access. There is a shared living room, kitchen and bathroom (with shower
-over the bath). The rent is £645 per month plus bills which are around
-£60-70 per month. We are looking for someone who is tidy, clean and
-respectful. We are looking for someone who is considerate and respects
-each other’s privacy. Please get in touch</p>
+#professional #4_bedrooms #postcode_SE1 #flat</em></p>
+<blockquote>
+<p>Hello! We have a double room available in our flat in Elephant and
+Castle. The room is fully furnished with a double bed, wardrobe, chest
+of drawers, desk and chair. The flat is on the first floor of a modern
+building with lift access. There is a shared living room, kitchen and
+bathroom (with shower over the bath). The rent is £645 per month plus
+bills which are around £60-70 per month. We are looking for someone who
+is tidy, clean and respectful. We are looking for someone who is
+considerate and respects each other’s privacy. Please get in touch</p>
+</blockquote>
 <p><em>translate Hashtags to English: #Wapping #rent_585 #balcony
 #bills_included #professional #garden #2_bedrooms #postcode_E1
-#flat</em> &gt; I am looking for a flatmate to share my 2 bedroom flat
-in Wapping. The room is a good size double and comes with a double bed,
-wardrobe and chest of drawers. There is also a small balcony off the
-living room which is great for summer BBQ’s. The flat is on the first
-floor of a modern block with lift access. It has a large kitchen/dining
-area with a dining table and chairs, and a bathroom with a bath and
-shower. There is a communal garden at the rear of the building, which is
-perfect for BBQ’s in the summer</p>
+#flat</em></p>
+<blockquote>
+<p>I am looking for a flatmate to share my 2 bedroom flat in Wapping.
+The room is a good size double and comes with a double bed, wardrobe and
+chest of drawers. There is also a small balcony off the living room
+which is great for summer BBQ’s. The flat is on the first floor of a
+modern block with lift access. It has a large kitchen/dining area with a
+dining table and chairs, and a bathroom with a bath and shower. There is
+a communal garden at the rear of the building, which is perfect for
+BBQ’s in the summer</p>
+</blockquote>
 <p><em>translate Hashtags to English: #Whitechapel #rent_680
-#bills_included #professional #3_bedrooms #postcode_E1 #flat</em> &gt; I
-have a double room to rent in Whitechapel. The room is fully furnished
-with a double bed, wardrobe and chest of drawers. The flat is located on
-the top floor of a Victorian house. It has a living room, kitchen and
-bathroom. There is also a separate toilet and shower room. The rent is
-£680 per month which includes all bills. You will be sharing the flat
-with two young professionals who are very friendly and easy to get along
-with. We are looking for someone who is clean and tidy and respectful.
-We are looking for someone who is considerate and respects each
-other</p>
+#bills_included #professional #3_bedrooms #postcode_E1 #flat</em></p>
+<blockquote>
+<p>I have a double room to rent in Whitechapel. The room is fully
+furnished with a double bed, wardrobe and chest of drawers. The flat is
+located on the top floor of a Victorian house. It has a living room,
+kitchen and bathroom. There is also a separate toilet and shower room.
+The rent is £680 per month which includes all bills. You will be sharing
+the flat with two young professionals who are very friendly and easy to
+get along with. We are looking for someone who is clean and tidy and
+respectful. We are looking for someone who is considerate and respects
+each other</p>
+</blockquote>
 <p>I don’t imagine any of the above listings will make you jump out of
 your chair and slap down some money for a deposit, but it is pretty cool
 how much the model can customise the generated text. For example, the
@@ -112,15 +119,17 @@ these listings were written by a drunk flatmate after a night out.</p>
 <p>Because there is so much information baked into the T5 model, it can
 generalise to locations outside of the UK. Let’s pick Manhattan…</p>
 <p><em>translate Hashtags to English: #Manhattan #rent_1200
-#professional #2_bedrooms #flat #living_room</em> This amazing apartment
-is on the 5th floor, so it is quite a high-rise.The room comes fully
-furnished with kingsize bed, double closet, table, and 4 chairs! The
-apartment has two bathrooms, one in each: one downstairs (with toilet),
-one upstairs (shower) and one of those are just for guests only!! The
-living area/bedroom includes huge windows looking over New York skyline
-from all directions…There are two bedrooms available; one large,
-spacious bedroom and one extra small but nice space to keep a dog.You
-will share the entire upper house</p>
+#professional #2_bedrooms #flat #living_room</em></p>
+<blockquote>
+<p>This amazing apartment is on the 5th floor, so it is quite a
+high-rise.The room comes fully furnished with kingsize bed, double
+closet, table, and 4 chairs! The apartment has two bathrooms, one in
+each: one downstairs (with toilet), one upstairs (shower) and one of
+those are just for guests only!! The living area/bedroom includes huge
+windows looking over New York skyline from all directions…There are two
+bedrooms available; one large, spacious bedroom and one extra small but
+nice space to keep a dog.You will share the entire upper house</p>
+</blockquote>
 <p>While it’s obvious to us that Manhattan is in New York, it surprised
 me that this model was able to take this knowledge and combine it with
 the training we did to generate a listing. Pretty cool!</p>

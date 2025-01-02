@@ -1,9 +1,9 @@
 {
   "files": [
     {
-      "title": "Generating rental listings with AI",
+      "title": "Generating rental listings with Machine Learning",
       "slug": "london-data-text-generation",
-      "file": "blog/3_text_generation.html",
+      "file": "blog/london_data_3_text_generation.html",
       "date": "16-02-2022"
     },
     {
@@ -15,13 +15,13 @@
     {
       "title": "NLP analysis of London Rental Listings",
       "slug": "london-data-nlp-analysis",
-      "file": "blog/2_words.html",
+      "file": "blog/london_data_2_nlp.html",
       "date": "07-04-2018"
     },
     {
       "title": "Scraping and Analysing 27,000 London Rental Listings",
       "slug": "london-data-property-analysis",
-      "file": "blog/1_numbers.html",
+      "file": "blog/london_data_1_scraping.html",
       "date": "12-02-2018"
     },
     {
