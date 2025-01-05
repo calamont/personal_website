@@ -14,17 +14,18 @@ for how efficiently a database can organise and retrieve your data.
 Other technical and practical reasons can then be considered in your
 final technology choice.</p>
 <p>If you would like to learn more after reading this piece I would
-<strong>strongly</strong> recommend reading Designing Data-Intensive
-Applications by Martin Kleppmann. I reference other useful further
-reading at <a href="#further-reading">the end of the article</a> for the
-eager developers out there.</p>
+<strong>strongly</strong> recommend Designing Data-Intensive
+Applications by Martin Kleppmann. I reference other useful resources at
+<a href="#further-reading">the end of the article</a> for the eager.</p>
 <h2 id="what-is-a-data-model">What is a data model?</h2>
 <p>A data model describes how data is structured and logically organised
-in a database. For example, SQL typically uses a relational model, where
-relations are stored in separate tables, which will be physically
-separate on disk. Others include document, column-family (or
-wide-column) and graph data models. In certain use cases, it is also
-possible to effectively ignore the data model altogether!</p>
+in a database. For example, SQL databases typically use a relational
+model, where relations are stored in separate tables. The data in these
+tables are then stored physically separate on disk. Clearly this impacts
+how reads and writes are performed, and may not be ideal for your
+application. Others data models include document, wide-column and graph
+models. In certain use cases, it is also possible to effectively ignore
+the data model altogether!</p>
 <p>Data models are not interchangeable. Each makes assumptions about how
 the data is structured and will be accessed. A mismatch between the data
 model of your database and your application will impact performance. So,
@@ -35,8 +36,8 @@ when building a new application, ask yourself these questions:</p>
 <li>Is it useful to retrieve or update only part of the data? Or will
 you read and write it in full?</li>
 </ul>
-<p>We will see how the answers to these questions can help guide the
-selection of an appropriate data model and database.</p>
+<p>We will see how the answers to these questions can help you identify
+the right data model and database.</p>
 <h2 id="no-data-model-i.e.-key-value-stores">No data model
 (i.e. key-value stores)</h2>
 <p><strong>Example databases:</strong> Riak, RocksDB</p>
@@ -67,9 +68,9 @@ helps database partitioning. This can greatly improve scalability.</p>
 <p>The flexibility of the stored value could be a benefit for certain
 use cases. But such an agnostic approach has trade-offs that make it
 unsuitable for most applications. Clearly, there is no database support
-for joins between related data. The database is ignorant what’s stored
-for any key. It is not even possible to to perform simple updates
-without first reading the value into the application code. For example,
+for joins between related data. The database is ignorant about what’s
+stored for any key. It is not even possible to to perform simple updates
+without first reading the value into the application logic. For example,
 RocksDB cannot natively increment a counter or append to an array. The
 required Read-Modify-Write operations to update a value has obvious
 performance implications. It also introduces concurrency headaches if
@@ -106,16 +107,16 @@ storing the object as a single document, access to the full object is
 provided through a simple, efficient, atomic query. No joins
 necessary!</p>
 <p>Indeed, document databases typically have weak support for joins. It
-is discouraged to maintain this relation through foreign keys to other
+is discouraged to maintain any relation through foreign keys to other
 document collections. The preferred approach is to denormalise the data
 and embed it in all the relevant primary documents. By denormalising
 data, we remove the impediment of document joins and improve read
 performance. But there are downsides. Such an approach is detrimental if
 we expected the embedded data to change frequently. This is because the
 embedded data may be duplicated across many documents. So we need to
-update all of these if any of the embedded data is updated. On top of
-the obvious performance implications, this increases the chances of
-storing stale data, which could introduce bugs. So, a document model is
+update every one of these if the embedded data changes. On top of the
+obvious performance implications, this increases the chances of storing
+stale data, which could introduce bugs. So, a document model is
 ill-suited to modelling data with many-to-many relations.</p>
 <p>Document databases are usually schema-less, and the data can have
 arbitrary fields and levels of nesting. The lack of schema may be an
@@ -127,7 +128,7 @@ has to accommodate both old and new schemas of the stored data. The
 result can be messy and difficult to maintain code. Therefore, I don’t
 believe the “flexibility” of a schema-less database provides a real
 benefit. It’s simply a property of the database to be aware of.</p>
-<p>When is a document data model suitable for your application?</p>
+<p>When is a document model suitable for your application?</p>
 <ul>
 <li>Your data is self-contained (only one-to-one or one-to-many
 relations) and is typically queried as the whole object.</li>
@@ -146,12 +147,12 @@ expected query patterns.</p>
 <p>Unsurprisingly, the relational model is useful for data that contains
 many-to-many relationships. Reading such data is more efficient as
 relational databases have good support for joins between tables. Also,
-separating objects into tables normalises the data, which improves write
-efficiency if we need to update a relation. Unlike unnormalised document
-databases, now we only need to update a single record, instead of every
-record that references that relation. Below we see the same property
-listing data as before, but split into a number of different tables.
-These reference each other through foreign keys.</p>
+separating objects into tables normalises the data. So our write
+efficiency is improved when we need to update a relation. Unlike
+unnormalised document databases, now we only need to update a single
+record, instead of every record that references that relation. Below we
+see the same property listing data as before, but split into a number of
+different tables. These reference each other through foreign keys.</p>
 <figure>
 <img src="images/relational_model.png" />
 <figcaption>
@@ -171,14 +172,14 @@ operation still carries a performance hit.</p>
 <p>As relational databases improve support for JSON/XML data types, they
 can leverage some of the benefits of document databases. Certain fields
 may be defined as a schema-less JSON object, which makes it easier to
-evolve these as the app matures. An example is the details field in the
-above <strong>Listing</strong> table. Through this feature, we can gain
-some of the advantages of document-oriented databases. For this reason,
-Andrew Pavlo goes so far as to suggest that SQL and a relational model
-is <a
+evolve these as the app matures. An example is the <code>details</code>
+field in the above <strong>Listing</strong> table. Through this feature,
+we can gain some of the advantages of a document-oriented database. For
+this reason, Andrew Pavlo goes so far as to suggest that SQL and a
+relational model is <a
 href="https://www.youtube.com/watch?v=8Woy5I511L8&amp;list=WL&amp;index=3&amp;t=35s">the
 only form of database you should consider for your app</a>.</p>
-<p>When would your app benefit from a relational model?</p>
+<p>When is a relational model suitable for your application?</p>
 <ul>
 <li>You will frequently read only slices of the data, as opposed to
 requiring the full object.</li>
@@ -193,9 +194,9 @@ If not, maybe a key-value store or document database could be useful.
 But be mindful how your application code will manage evolving data.</p>
 <p><strong>Will the data have many-to-many relations?</strong><br/> If
 the data has many-to-many relations, it is likely a relational database
-will serve you best. But if it doesn’t, other needs, such as your query
-patterns, scaling requirements, and transaction support can indicate the
-best option.</p>
+will serve you best. If it doesn’t, think about the other types of
+relations that exist in the data. Is there a benefit extracting these
+into separate tables? Often there is.</p>
 <p><strong>Is it useful to retrieve or update only part of the data? Or
 will you read and write it in full?</strong><br/> A relational structure
 is useful if only reading or updating part of the data. The database
@@ -215,10 +216,10 @@ ridiculous scaling requirements could force you to consider models that
 can be better distributed. In such situations, research, research some
 more, and use first principles to guide your decision.</p>
 <h2 id="further-reading">Further reading</h2>
-<p>Here is useful reading to better understand the principles guiding
-different database designs. Some of this is overly academic, but will
-help you understand the technologies you work with every day as a
-developer.</p>
+<p>Here are some additional resources that describe the principles
+guiding different database designs. Some of these are quite academic,
+but will help you understand the technologies you work with every day as
+a developer.</p>
 <p><a
 href="https://www.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/">Designing
 Data-Intensive Applications</a> - Martin Kleppman<br/> <a
