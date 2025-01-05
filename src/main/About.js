@@ -6,7 +6,6 @@ import './Blog.css';
 const About = () => {
   return (
     <div className="blog-text">
-      <h2>About me</h2>
       <p>
         Hey 👋 I'm Callum, A software engineer from Melbourne, Australia.
         <br />

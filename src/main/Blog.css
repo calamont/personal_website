@@ -1,11 +1,5 @@
 :root {
-  --blog-margin: 100px;
-}
-
-@media screen and (max-width: 800px) {
-  :root {
-    --blog-margin: 20px;
-  }
+  --blog-margin: 0px;
 }
 
 .blog-text img {
@@ -23,6 +17,7 @@
   font-style: normal;
   font-size: 27px;
   letter-spacing: 0.1em;
+  text-align: center;
 }
 
 .blog-text h2 {
@@ -39,13 +34,8 @@
 
 .blog-text {
   max-width: 850px;
-  margin-left: var(--blog-margin);
-  margin-right: var(--blog-margin);
-
-  font-family: 'Raleway';
+  font-family: 'Helvetica';
   font-weight: 300;
-  font-size: 14px;
-  letter-spacing: 0.06em;
   line-height: 1.8em;
   color: rgb(16, 16, 16);
   resize: inherit;
@@ -54,12 +44,21 @@
 
 .blog-text p {
   margin-top: 0px;
+  line-height: 1.6em;
+}
+
+.blog-text figcaption {
+  font-style: italic;
+  font-size: 12px !important;
+}
+
+time {
+  display: flex;
+  justify-content: center;
 }
 
 .blog-list {
   max-width: 850px;
-  margin-left: var(--blog-margin);
-  margin-right: var(--blog-margin);
   display: flex;
   flex-flow: column;
   align-items: start;
@@ -88,24 +87,8 @@
 .blog-date {
   color: rgb(125, 125, 125);
   width: 50px;
-  font-style: italic;
-}
-
-h2 {
-  width: 100%;
-  margin: 0px;
-  margin-bottom: 15px;
-  font-family: 'Kiwi Maru' !important;
-  font-weight: 500 !important;
-  font-style: normal !important;
-  font-size: 18px !important;
-  letter-spacing: 0.1em !important;
 }
 
 .blog-link {
   margin: 0.5rem 0 0 0;
-}
-
-.blog-link > a {
-  color: rgb(0, 0, 0);
 }
