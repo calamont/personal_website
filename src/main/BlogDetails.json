@@ -1,6 +1,12 @@
 {
   "files": [
     {
+      "title": "A Simple Guide for Choosing the Right Database",
+      "slug": "choosing-the-right-database",
+      "file": "blog/data_models.html",
+      "date": "05-01-2025"
+    },
+    {
       "title": "Generating rental listings with Machine Learning",
       "slug": "london-data-text-generation",
       "file": "blog/london_data_3_text_generation.html",
