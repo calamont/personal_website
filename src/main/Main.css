@@ -1,7 +1,19 @@
 .main {
   width: clamp(10ch, 90%, 100ch);
   margin: 2rem 1rem 0rem 1rem;
-  font-family: 'Raleway';
-  font-size: 0.9em;
-  letter-spacing: 0.05em;
+  font-family: 'Helvetica';
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.6em;
+  letter-spacing: 0.06em;
+  color: rgb(16, 16, 16);
+}
+
+.main a,
+.main a:link,
+.main a:visited,
+.main a:hover,
+.main a:active {
+  color: #642f2f;
+  text-decoration: underline dotted;
 }
