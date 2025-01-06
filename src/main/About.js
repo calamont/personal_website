@@ -19,7 +19,7 @@ const About = () => {
         <br />I also love playing guitar, learning spanish, and cooking. Hit me up if you're ever in
         Melbourne!
       </p>
-      <h2>Thing's I've written</h2>
+      <h2>Things I've written</h2>
       <h4>Software and tech</h4>
       <ul>
         <li>
