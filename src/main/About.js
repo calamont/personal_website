@@ -3,9 +3,19 @@ import { Link } from 'react-router-dom';
 
 import './Blog.css';
 
+const META_DESCRIPTION = `
+Who is Callum Lamont? I am software engineer from Australia.
+I have a PhD in biomedical engineering, but now build backends for systems that 
+have nothing to do with biomedical engineering.
+`;
+const META_KEYWORDS =
+  'Callum Lamont, Callum, calamont, cal_lamont, Melbourne, Australia, software, engineer';
+
 const About = () => {
   return (
     <div className="blog-text">
+      <meta name="keywords" content={META_KEYWORDS} />
+      <meta name="description" content={META_DESCRIPTION} />
       <p>
         Hey 👋 I'm Callum, A software engineer from Melbourne, Australia.
         <br />

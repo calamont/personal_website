@@ -3,7 +3,9 @@
     {
       "title": "A Simple Guide for Choosing the Right Database",
       "slug": "choosing-the-right-database",
+      "description": "Why would you pick PostgreSQL to support your next application when you have dozens of alternatives to choose from? Understanding what a data model is will help you understand what database you should use.",
       "file": "blog/data_models.html",
+      "keywords": "database, system design, sql, nosql, postgresql, backend",
       "date": "05-01-2025"
     },
     {
