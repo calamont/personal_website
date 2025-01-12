@@ -17,7 +17,7 @@ const Main = () => {
           </Route>
           {blogDetails.files.map((blog) => (
             <Route path={'/blog/' + blog.slug} key={blog.slug}>
-              <BlogPost file={blog.file} />
+              <BlogPost blogDetails={blog} />
             </Route>
           ))}
           <Route path="/blog" component={BlogList} />
