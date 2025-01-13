@@ -9,11 +9,11 @@ href="https://www.oreilly.com/library/view/implementing-domain-driven-design/978
 Domain Driven Design</strong></a>.</p>
 <p>As developers, we are told what constitutes “good code”. There should
 be high cohesion, low coupling, single responsibilities, information
-hiding, and so on. But these ideas are abstract. While the benefit of
+hiding, and so on. But these ideas are abstract. While the benefits of
 these characteristics are clear, it’s not always obvious how to achieve
-them. Well, DDD is one way how. It describes a number of patterns that
-will help you write clearer, less coupled, extensible, cohesive code
-that aligns strongly with the business’ goals.</p>
+them. Well, DDD is one way. It describes a number of patterns that will
+help you write clearer, less coupled, extensible, cohesive code that
+aligns strongly with the business’ goals.</p>
 <p>A core tenet is that your code should model the domain you are
 building a solution for. If a business process change is conceptually
 simple, so is the required code change. No more explaining to a product
@@ -22,7 +22,7 @@ implement. I am relatively new to this methodology. So I won’t provide a
 more detailed description than that. Instead, I will share some useful
 DDD patterns I’ve come across. These are good general programming
 practices. You don’t need to “do” DDD to follow these. But if you think
-they are insightful, I would encourage you to checkout the resources <a
+they are insightful, I would encourage you to check out the resources <a
 href="#further-reading">listed at the end</a>.</p>
 <p><strong>Some useful DDD patterns:</strong><br/> 1. <a
 href="#understand-what-youre-building-and-why">Understand what you’re
@@ -148,10 +148,10 @@ method represents a single business use case. And each method achieves
 its goal by interacting with the <strong>Aggregates</strong> and
 <strong>Domain Services</strong>.</p>
 <h2 id="use-immutable-value-objects">Use immutable Value Objects</h2>
-<p>Try using <strong>Value Objects</strong> where ever possible.
-Replacing both primitives and classes with <strong>Value
-Objects</strong> will make your code more self-documenting, easier to
-maintain, and less prone to bugs.</p>
+<p>Try using <strong>Value Objects</strong> wherever possible. Replacing
+both primitives and classes with <strong>Value Objects</strong> will
+make your code more self-documenting, easier to maintain, and less prone
+to bugs.</p>
 <p>Let us consider a Kotlin application for booking tickets at a cinema.
 Perhaps it was first written like below.</p>
 <div class="sourceCode" id="cb1"><pre
@@ -230,7 +230,7 @@ number of method parameters.</p>
 <p><strong>Better type safety</strong><br/> Now it’s harder to
 accidentally swap the order of the method parameters that previously had
 the same type (i.e. <code>UUID</code>). For static languages, the
-compiler will complain if the value for <code>customerId</code> and
+compiler will complain if the values for <code>customerId</code> and
 <code>cinemeaId</code> are swapped. For dynamic programming languages,
 such errors can now be caught by the linter (if you use one).</p>
 <p><strong>Improved evolvability.</strong><br/> What if we want to
@@ -254,8 +254,8 @@ passed around a multi-threaded application with confidence.</p>
 <p>Don’t compose your application with only weak (or anaemic) domain
 models. These are classes that hold data but don’t include any business
 logic. The result is that all logic is pushed into what developers often
-labelled “services” (but these are different to the DDD definition of
-Services <a href="#entities">provided above</a>).</p>
+label “services” (but these are different to the DDD definition of
+Services <a href="#domain-services">provided above</a>).</p>
 <p>For an application with anaemic domain models, a developer might
 write a class like below to perform the business logic.</p>
 <div class="sourceCode" id="cb3"><pre
@@ -270,7 +270,7 @@ class="sourceCode kotlin"><code class="sourceCode kotlin"><span id="cb3-1"><a hr
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fun</span> <span class="fu">cancelBooking</span><span class="op">(</span><span class="va">bookingId</span><span class="op">:</span> <span class="dt">BookingIdentifier</span><span class="op">)</span> <span class="op">{</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        <span class="op">..</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Business logic...</span></span>
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
@@ -308,7 +308,7 @@ class="sourceCode kotlin"><code class="sourceCode kotlin"><span id="cb4-1"><a hr
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Booking<span class="op">(</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">val</span> <span class="va">bookingId</span><span class="op">:</span> <span class="dt">CustomerIdentifier</span> <span class="op">=</span> BookingIdentifier<span class="op">.</span>new<span class="op">(),</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">val</span> <span class="va">bookingId</span><span class="op">:</span> <span class="dt">BookingIdentifier</span> <span class="op">=</span> BookingIdentifier<span class="op">.</span>new<span class="op">(),</span></span>
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">val</span> <span class="va">customerId</span><span class="op">:</span> <span class="dt">CustomerIdentifier</span><span class="op">,</span></span>
 <span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">val</span> <span class="va">cinemaId</span><span class="op">:</span> <span class="dt">CinemaIdentifier</span><span class="op">,</span></span>
 <span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">val</span> <span class="va">filmId</span><span class="op">:</span> <span class="dt">FilmIdentifier</span><span class="op">,</span></span>
@@ -336,7 +336,7 @@ of a codebase is critical for any long-lived application. There is no
 longer a “create” function, as this is simply performed through the act
 of instantiating the class. And the actions that can be made on this
 <strong>Entity</strong> are clearly defined by the class methods.
-Instead of the vague <code>updateBooking</code> class, we have
+Instead of the vague <code>updateBooking</code> method, we have
 <code>changeSeats</code>. The code reflects the actual use case and
 tells the developer why it’s there.</p>
 <h2 id="hide-your-domain-models-from-the-outside-world">Hide your domain
@@ -345,8 +345,8 @@ models from the outside world</h2>
 world. These could help serve RESTful endpoints, communicate with other
 services via RPC, or connect to a database. While necessary, none of
 this has anything to do with the purpose of the service. So, there is no
-reason to couple these external dependencies to this core business
-logic. This principle is often referred to as <a
+reason to couple these external dependencies to any core business logic.
+This principle is often referred to as <a
 href="https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html">clean
 architecture</a>. DDD is not the only proponent of this style. But, with
 its strong emphasis on considered domain models, it does scream out for
@@ -363,9 +363,9 @@ function.</p>
 <img src="images/ddd_clean_architecture.png" />
 <figcaption>
 An illustration of the Ports and Adapters architecture, where arrows
-point in the direction of depenceny. If needed, we can easily change our
-datastore from PostgreSQL to MongoDB. Inbound and outbound ports don’t
-only interface with APIs and databases. This is only an example.
+point in the direction of dependency. If needed, we can easily change
+our datastore from PostgreSQL to MongoDB. Inbound and outbound ports
+don’t only interface with APIs and databases. This is only an example.
 </figcaption>
 </figure>
 <p>What’s wrong with a simple three-layer architecture, with a
@@ -391,7 +391,7 @@ application. I have also seen the same mistake occur for gRPC generated
 data access classes. Best use a clean architecture and leave these
 dependencies out of your core business logic 😌</p>
 <h2 id="further-reading">Further reading</h2>
-<p>Am I an expert in DDD? No! But some of the insights above motivated
+<p>Am I an expert in DDD? Nope. But some of the insights above motivated
 me to apply it more, and to keep learning. If you feel the same, I’ve
 listing some additional resources below.<br/><br/> <a
 href="https://www.domainlanguage.com/wp-content/uploads/2016/05/DDD_Reference_2015-03.pdf">Domain-Driven
