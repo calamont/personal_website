@@ -14,8 +14,8 @@ const META_KEYWORDS =
 const About = () => {
   return (
     <div className="blog-text">
-      <meta name="keywords" content={META_KEYWORDS} />
-      <meta name="description" content={META_DESCRIPTION} />
+      <meta name="keywords" property="og:keywords" content={META_KEYWORDS} />
+      <meta name="description" property="og:description" content={META_DESCRIPTION} />
       <p>
         Hey 👋 I'm Callum, A software engineer from Melbourne, Australia.
         <br />
