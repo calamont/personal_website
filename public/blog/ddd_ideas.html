@@ -127,19 +127,19 @@ of objects (and rolled back everywhere upon failure), then they belong
 together in an <strong>Aggregate</strong>. One <strong>Entity</strong>
 will serve as the <strong>Aggregate Root</strong>, through which all
 behaviour is orchestrated.</p>
-<p>What if another <strong>Entity</strong> is changed at the same time
-as the <strong>Aggregate</strong>? If there is no requirement to
-maintain consistency between the two objects (and <em>really</em>
-challenge yourself on this point!) then it shouldn’t be part of the
-<strong>Aggregate</strong>. Instead, it can be updated through an
+<p>What if a process updates an existing <strong>Aggregate</strong> and
+another <strong>Entity</strong> at the same time? If there is no
+requirement to maintain consistency between the two objects (and
+<em>really</em> challenge yourself on this point!) then they don’t need
+to be combined to form a larger <strong>Aggregate</strong>. Instead,
+this other <strong>Entity</strong> can be updated through an
 event-driven process that is eventually consistent. The goal is to make
 each <strong>Aggregate</strong> as lightweight as possible.</p>
 <h4 id="domain-services">Domain Services</h4>
 <p>A <strong>Domain Service</strong> helps realise business logic and
-coordinates actions between your domain models
-(i.e. <strong>Aggregates</strong>). Importantly, only use <strong>Domain
-Services</strong> when the behaviour being orchestrated cannot logically
-belong to a single <strong>Aggregate</strong> (see <a
+coordinates actions between your domain models. Importantly, only use
+<strong>Domain Services</strong> when the behaviour being orchestrated
+cannot logically belong to a single <strong>Aggregate</strong> (see <a
 href="#use-rich-domain-models">below</a>).</p>
 <h4 id="application-services">Application Services</h4>
 <p>These allow your domain logic to interface with the external world
@@ -229,13 +229,14 @@ location (theatre, row, seat number) are grouped into the
 number of method parameters.</p>
 <p><strong>Better type safety</strong><br/> Now it’s harder to
 accidentally swap the order of the method parameters that previously had
-the same type (i.e. <code>UUID</code>). For static languages, the
-compiler will complain if the values for <code>customerId</code> and
-<code>cinemeaId</code> are swapped. For dynamic programming languages,
-such errors can now be caught by the linter (if you use one).</p>
+the same type (i.e. <code>UUID</code>). For static programming
+languages, the compiler will complain if the values for
+<code>customerId</code> and <code>cinemaId</code> are swapped. For
+dynamic programming languages, such errors can now be caught by the
+linter (if you use one).</p>
 <p><strong>Improved evolvability.</strong><br/> What if we want to
 change the data type representing an identifier (e.g. change the cinema
-identifier to <code>Int</code> )? Previously, we would need to update
+identifier to <code>Int</code>)? Previously, we would need to update
 <em>all</em> class and function definitions using that identifier. Now
 we only need to update a few lines in the <code>CinemaIdentifier</code>
 class.</p>
@@ -243,7 +244,7 @@ class.</p>
 the <strong>Value Object</strong> construction. This is much better than
 scattering around (and possibly repeating) validation in the methods the
 data is used. It improves reliability, because the data is
-<em>guaranteed</em> to be validated. And it improves readability, as the
+<em>guaranteed</em> to be valid. And it improves readability, as the
 business logic can now focus on the use case.</p>
 <p><strong>Immutability</strong><br/> <strong>Value Objects</strong> are
 immutable. Once one is instantiated and validated, you know it is valid,
@@ -255,7 +256,7 @@ passed around a multi-threaded application with confidence.</p>
 models. These are classes that hold data but don’t include any business
 logic. The result is that all logic is pushed into what developers often
 label “services” (but these are different to the DDD definition of
-Services <a href="#domain-services">provided above</a>).</p>
+services <a href="#domain-services">provided above</a>).</p>
 <p>For an application with anaemic domain models, a developer might
 write a class like below to perform the business logic.</p>
 <div class="sourceCode" id="cb3"><pre
