@@ -1,6 +1,14 @@
 {
   "files": [
     {
+      "title": "An Initiation to Domain-Driven Design",
+      "slug": "initiation-domain-driven-design",
+      "file": "blog/ddd_ideas.html",
+      "description": "Domain-driven design offers a number of patterns that help deliver clean, cohesive, scalable code. Let's review some of these.",
+      "keywords": "domain driven design, DDD, clean code, programming",
+      "date": "13-01-2025"
+    },
+    {
       "title": "A Simple Guide for Choosing the Right Database",
       "slug": "choosing-the-right-database",
       "description": "Why would you pick PostgreSQL to support your next application when you have dozens of alternatives to choose from? Understanding what a data model is will help you understand what database you should use.",

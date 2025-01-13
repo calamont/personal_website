@@ -1,0 +1,405 @@
+<h1 id="an-initiation-to-domain-driven-design">An Initiation to
+Domain-Driven Design</h1>
+<p><time datetime="2025-01-13 07:00">13th Jan 2025</time></p>
+<p>What is Domain-Driven Design (DDD)? I used to group it with the other
+programming acronyms (TDD, SOLID, KISS, YAGNI, DRY, etc.). Maybe
+something developers <em>should</em> practice, but often don’t. That
+changed after I read Vaughn Vernon’s book <a
+href="https://www.oreilly.com/library/view/implementing-domain-driven-design/9780133039900/"><strong>Implementing
+Domain Driven Design</strong></a>.</p>
+<p>As developers, we are told what constitutes “good code”. There should
+be high cohesion, low coupling, single responsibilities, information
+hiding, and so on. But these ideas are abstract. While the benefit of
+these characteristics are clear, it’s not always obvious how to achieve
+them. Well, DDD is one way how. It describes a number of patterns that
+will help you write clearer, less coupled, extensible, cohesive code
+that aligns strongly with the business’ goals.</p>
+<p>A core tenet is that your code should model the domain you are
+building a solution for. If a business process change is conceptually
+simple, so is the required code change. No more explaining to a product
+manager why a basic feature request will actually take weeks to
+implement. I am relatively new to this methodology. So I won’t provide a
+more detailed description than that. Instead, I will share some useful
+DDD patterns I’ve come across. These are good general programming
+practices. You don’t need to “do” DDD to follow these. But if you think
+they are insightful, I would encourage you to checkout the resources <a
+href="#further-reading">listed at the end</a>.</p>
+<p><strong>Some useful DDD patterns:</strong><br/> 1. <a
+href="#understand-what-youre-building-and-why">Understand what you’re
+building, and why.</a><br/> 2. <a
+href="#understand-your-relationship-with-other-services">Understand your
+relationship with other services.</a><br/> 3. <a
+href="#understand-the-type-of-object-youre-creating">Understand the type
+of object you’re creating.</a><br/> 4. <a
+href="#use-immutable-value-objects">Use immutable Value
+Objects.</a><br/> 5. <a href="#use-rich-domain-models">Use rich domain
+models.</a><br/> 6. <a
+href="#hide-your-domain-models-from-the-outside-world">Hide your domain
+models from the outside world.</a><br/></p>
+<h2 id="understand-what-youre-building-and-why">Understand what you’re
+building, and why</h2>
+<p>Don’t make assumptions about what you’re building. Discuss and
+explore it with the domain expert. This could be your product manager or
+clients. Through this collaboration, both the technical and
+non-technical team members will better understand their business, user
+needs, and value they are delivering. The process of exploration may
+even help the domain experts uncover areas of uncertainty. Plan and
+design. Do not immediately jump into coding.</p>
+<p>Part of this process involves the creation of a <strong>Ubiquitous
+Language</strong>, a shared language describing the domain. A common
+approach for this modelling process is <a
+href="https://www.eventstorming.com/">Event Storming</a>. The
+<strong>Ubiquitous Language</strong> is used by both domain experts and
+within the codebase. As Vaughn Vernon writes in <strong>Implementing
+Domain-Driven Design</strong>:</p>
+<blockquote>
+<p>We should build software that is as close as possible to what the
+business leaders and experts would create if they were the coders… There
+are zero translations between the domain experts, the software
+developers, and the software.</p>
+</blockquote>
+<p>Imagine an application for booking tickets at a cinema. What’s a good
+name for a function that saves the finalised booking in the backend?
+Should the method be <code>createBooking</code> or
+<code>confirmBooking</code>? The word “create” leaks developer knowledge
+into the codebase. They know a new record is being created in the
+database. And, ultimately, that is what this function does. But the name
+<code>confirmBooking</code> better describes the real life use case.
+“Create” is not the verb a customer would associate with the
+confirmation step of the booking process.</p>
+<h2 id="understand-your-relationship-with-other-services">Understand
+your relationship with other services</h2>
+<p>Before designing a service, take a moment to understand how it fits
+into your wider technology ecosystem. Some services exist to support
+unrelated parts of the business. And there are services that your new
+service will need to interact with. Understanding this space is called
+<strong>Context Mapping</strong>. You might incidentally do this when
+designing a new system. However, for DDD it is an <em>explicit</em>
+process. It goes so far as to characterise the relationships
+underpinning these services. Below are a few examples. Check out more at
+<a href="https://github.com/ddd-crew/context-mapping">this useful
+repository</a>.</p>
+<h4 id="partnership">Partnership</h4>
+<p>The upstream and downstream teams succeed or fail together. Models
+and interfaces are developed to suit both their needs and any features
+and planned between them to minimise harm.</p>
+<h4 id="customer-supplier-development">Customer-Supplier
+Development</h4>
+<p>The success of the upstream team (the supplier) is independent of the
+downstream team. But they take the downstream’s needs into account when
+planning.</p>
+<h4 id="conformist">Conformist</h4>
+<p>The upstream team does not accommodate the downstream team’s needs.
+The downstream team conforms to the models of the upstream team,
+whatever they are or change to.</p>
+<p>A lot of confusion and frustration might be avoided if these
+relationships are agreed between participating teams ahead of time.</p>
+<h2 id="understand-the-type-of-object-youre-creating">Understand the
+type of object you’re creating</h2>
+<p>In object-oriented programming (OOP), our codebases are full of
+classes. These are often loosely categorised into vague concepts like
+services and repositories. However, these categories and their
+definitions vary from one project (or developer) to the next. So in each
+new codebase, we spend time understanding the responsibilities of each
+class.</p>
+<p>Without formal definitions, it is easy for the scope of these classes
+to grow. And then the level of abstraction becomes lost. Fortunately,
+DDD provides concrete definitions for model categories, and rules for
+how they can interact. The vocabulary is simple, yet empowering. When
+you don’t have to define the building blocks of your application, you
+can focus more on what you’re building. These are the “tactical
+patterns” of DDD. Some examples are:</p>
+<h4 id="value-objects">Value Objects</h4>
+<p>Immutable objects that represent a value with no identity. These can
+be replaced, but cannot change, over time. Two <strong>Value
+Objects</strong> are considered equal if they hold the same values
+(i.e. structural equality).</p>
+<h4 id="entities">Entities</h4>
+<p>Objects that have a unique identity. Two <strong>Entities</strong>
+with the same identifier are considered equal, even if all other
+properties are different in value. These represent concepts in your
+domain that you need to observe and track changes to over time.</p>
+<h4 id="aggregates">Aggregates</h4>
+<p>These are a grouping of <strong>Entities</strong> and <strong>Value
+Objects</strong> that represent a consistency boundary. If there is some
+invariant or business rule that must be maintained when updating a group
+of objects (and rolled back everywhere upon failure), then they belong
+together in an <strong>Aggregate</strong>. One <strong>Entity</strong>
+will serve as the <strong>Aggregate Root</strong>, through which all
+behaviour is orchestrated.</p>
+<p>What if another <strong>Entity</strong> is changed at the same time
+as the <strong>Aggregate</strong>? If there is no requirement to
+maintain consistency between the two objects (and <em>really</em>
+challenge yourself on this point!) then it shouldn’t be part of the
+<strong>Aggregate</strong>. Instead, it can be updated through an
+event-driven process that is eventually consistent. The goal is to make
+each <strong>Aggregate</strong> as lightweight as possible.</p>
+<h4 id="domain-services">Domain Services</h4>
+<p>A <strong>Domain Service</strong> helps realise business logic and
+coordinates actions between your domain models
+(i.e. <strong>Aggregates</strong>). Importantly, only use <strong>Domain
+Services</strong> when the behaviour being orchestrated cannot logically
+belong to a single <strong>Aggregate</strong> (see <a
+href="#use-rich-domain-models">below</a>).</p>
+<h4 id="application-services">Application Services</h4>
+<p>These allow your domain logic to interface with the external world
+(API, persistence stores, etc). No business logic belongs here. Each
+method represents a single business use case. And each method achieves
+its goal by interacting with the <strong>Aggregates</strong> and
+<strong>Domain Services</strong>.</p>
+<h2 id="use-immutable-value-objects">Use immutable Value Objects</h2>
+<p>Try using <strong>Value Objects</strong> where ever possible.
+Replacing both primitives and classes with <strong>Value
+Objects</strong> will make your code more self-documenting, easier to
+maintain, and less prone to bugs.</p>
+<p>Let us consider a Kotlin application for booking tickets at a cinema.
+Perhaps it was first written like below.</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode kotlin"><code class="sourceCode kotlin"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> TicketDetail<span class="op">(</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> <span class="va">ticketType</span><span class="op">:</span> <span class="dt">TicketType</span><span class="op">,</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> <span class="va">filmId</span><span class="op">:</span> <span class="dt">UUID</span><span class="op">,</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> <span class="va">sessionTime</span><span class="op">:</span> <span class="dt">LocalDateTime</span><span class="op">,</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> <span class="va">seatTheatre</span><span class="op">:</span> <span class="dt">Int</span><span class="op">,</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> <span class="va">seatRow</span><span class="op">:</span> <span class="dt">Char</span><span class="op">,</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> <span class="va">seatNumber</span><span class="op">:</span> <span class="dt">Int</span><span class="op">,</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> <span class="va">price</span><span class="op">:</span> <span class="dt">BigDecimal</span><span class="op">,</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> <span class="va">discount</span><span class="op">:</span> <span class="dt">BigDecimal</span><span class="op">,</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="op">)</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="kw">fun</span> confirmBooking<span class="op">(</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="va">customerId</span><span class="op">:</span> <span class="dt">UUID</span><span class="op">,</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="va">cinemaId</span><span class="op">:</span> <span class="dt">UUID</span><span class="op">,</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="va">ticketDetails</span><span class="op">:</span> <span class="dt">List</span>&lt;<span class="va">TicketDetail</span>&gt;<span class="op">,</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Business logic...</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>We can improve this by introducing <strong>Value Objects</strong>.
+<strong>Value Objects</strong> are immutable, so we replace all use of
+<code>var</code> with <code>val</code>. And we use
+<code>data class</code> to enable structural equality when comparing
+objects. The same can be achieved by record classes in Java and data
+classes in Python.</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode kotlin"><code class="sourceCode kotlin"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="kw">class</span> CustomerIdentifier<span class="op">(</span><span class="kw">val</span> <span class="va">value</span><span class="op">:</span> <span class="dt">UUID</span><span class="op">)</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="kw">class</span> CinemaIdentifier<span class="op">(</span><span class="kw">val</span> <span class="va">value</span><span class="op">:</span> <span class="dt">UUID</span><span class="op">)</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="kw">class</span> FilmIdentifier<span class="op">(</span><span class="kw">val</span> <span class="va">value</span><span class="op">:</span> <span class="dt">UUID</span><span class="op">)</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="kw">class</span> Seat<span class="op">(</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">val</span> <span class="va">theatre</span><span class="op">:</span> <span class="dt">Int</span><span class="op">,</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">val</span> <span class="va">row</span><span class="op">:</span> <span class="dt">Char</span><span class="op">,</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">val</span> <span class="va">number</span><span class="op">:</span> <span class="dt">Int</span><span class="op">,</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="op">)</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="kw">class</span> TicketPrice<span class="op">(</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">val</span> <span class="va">price</span><span class="op">:</span> <span class="dt">BigDecimal</span><span class="op">,</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">val</span> <span class="va">discount</span><span class="op">:</span> <span class="dt">BigDecimal</span><span class="op">,</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Validates that discount &lt; price</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a> <span class="kw">data</span> <span class="kw">class</span> TicketDetail<span class="op">(</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">val</span> <span class="va">ticketType</span><span class="op">:</span> <span class="dt">TicketType</span><span class="op">,</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="kw">val</span> <span class="va">seat</span><span class="op">:</span> <span class="dt">Seat</span><span class="op">,</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="kw">val</span> <span class="va">price</span><span class="op">:</span> <span class="dt">TicketPrice</span><span class="op">,</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="kw">class</span> BookingDetails<span class="op">(</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="kw">val</span> <span class="va">customerId</span><span class="op">:</span> <span class="dt">CustomerIdentifier</span><span class="op">,</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    <span class="kw">val</span> <span class="va">cinemaId</span><span class="op">:</span> <span class="dt">CinemaIdentifier</span><span class="op">,</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    <span class="kw">val</span> <span class="va">filmId</span><span class="op">:</span> <span class="dt">FilmIdentifier</span><span class="op">,</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    <span class="kw">val</span> <span class="va">sessionTime</span><span class="op">:</span> <span class="dt">LocalDateTime</span><span class="op">,</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    <span class="kw">val</span> <span class="va">ticketDetails</span><span class="op">:</span> <span class="dt">List</span>&lt;<span class="va">TicketDetail</span>&gt;<span class="op">,</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Validates at least one seat being booked</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Validates all seats positions are unique</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="kw">fun</span> <span class="fu">confirmBooking</span><span class="op">(</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>    <span class="va">details</span><span class="op">:</span> <span class="dt">BookingDetails</span><span class="op">,</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Business logic...</span></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>These changes introduce a number of benefits.</p>
+<p><strong>Improved readability</strong><br/> Each type actually means
+something in our domain. They are not primitives. Also, related concepts
+can be grouped together. For example, all aspects of the seating
+location (theatre, row, seat number) are grouped into the
+<code>Seat</code> class. This improves readability and reduces the
+number of method parameters.</p>
+<p><strong>Better type safety</strong><br/> Now it’s harder to
+accidentally swap the order of the method parameters that previously had
+the same type (i.e. <code>UUID</code>). For static languages, the
+compiler will complain if the value for <code>customerId</code> and
+<code>cinemeaId</code> are swapped. For dynamic programming languages,
+such errors can now be caught by the linter (if you use one).</p>
+<p><strong>Improved evolvability.</strong><br/> What if we want to
+change the data type representing an identifier (e.g. change the cinema
+identifier to <code>Int</code> )? Previously, we would need to update
+<em>all</em> class and function definitions using that identifier. Now
+we only need to update a few lines in the <code>CinemaIdentifier</code>
+class.</p>
+<p><strong>Validation</strong><br/> Basic data validation is included in
+the <strong>Value Object</strong> construction. This is much better than
+scattering around (and possibly repeating) validation in the methods the
+data is used. It improves reliability, because the data is
+<em>guaranteed</em> to be validated. And it improves readability, as the
+business logic can now focus on the use case.</p>
+<p><strong>Immutability</strong><br/> <strong>Value Objects</strong> are
+immutable. Once one is instantiated and validated, you know it is valid,
+always. Because <strong>Value Objects</strong> are immutable, any
+methods are side-effect free. <strong>Value Objects</strong> can be
+passed around a multi-threaded application with confidence.</p>
+<h2 id="use-rich-domain-models">Use rich domain models</h2>
+<p>Don’t compose your application with only weak (or anaemic) domain
+models. These are classes that hold data but don’t include any business
+logic. The result is that all logic is pushed into what developers often
+labelled “services” (but these are different to the DDD definition of
+Services <a href="#entities">provided above</a>).</p>
+<p>For an application with anaemic domain models, a developer might
+write a class like below to perform the business logic.</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode kotlin"><code class="sourceCode kotlin"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> BookingService <span class="op">{</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fun</span> <span class="fu">confirmBooking</span><span class="op">(</span><span class="va">details</span><span class="op">:</span> <span class="dt">BookingDetails</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Business logic...</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fun</span> <span class="fu">updateBooking</span><span class="op">(</span><span class="va">bookingId</span><span class="op">:</span> <span class="dt">BookingIdentifier</span><span class="op">,</span> <span class="va">updatedDetails</span><span class="op">:</span> <span class="dt">BookingDetails</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Business logic...</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fun</span> <span class="fu">cancelBooking</span><span class="op">(</span><span class="va">bookingId</span><span class="op">:</span> <span class="dt">BookingIdentifier</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        <span class="op">..</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>What’s wrong with this? Well, the term “booking service” is pretty
+vague. It currently handles the logic for the creation, modification,
+and cancellation of a single booking. But should it include logic for
+listing historical bookings made by a customer? Or searching for a
+particular booking? Hmm, maybe, but possibly not… Regardless, if a
+product manager requests this functionality, I bet the logic will be
+added to this class. And through this process the class grows in scope
+and loses cohesion. And each new functionality will require more
+injected dependencies. Over time this scope creep creates <a
+href="https://en.wikipedia.org/wiki/God_object">God Classes</a>.</p>
+<p>What is the alternative? In DDD domain models aren’t necessarily
+simple data holders. They represent a core concept in your domain. Thus,
+they should not only hold the data, but also the behaviours that involve
+that data. These are called rich domain models.</p>
+<p>In the previous section I treated the <code>BookingDetails</code> as
+a <strong>Value Object</strong>. But if we put our DDD hats on, we can
+see a booking is actually better modelled as an <strong>Entity</strong>.
+That’s because each booking is unique. It is a <em>thing</em> that can
+be updated over its life. Thus we need to track it with a unique
+identifier. With some minor adjustments, we can improve our booking
+service from before.</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode kotlin"><code class="sourceCode kotlin"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a> <span class="kw">data</span> <span class="kw">class</span> TicketDetail<span class="op">(</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">val</span> <span class="va">ticketType</span><span class="op">:</span> <span class="dt">TicketType</span><span class="op">,</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">val</span> <span class="va">seat</span><span class="op">:</span> <span class="dt">Seat</span><span class="op">,</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">val</span> <span class="va">price</span><span class="op">:</span> <span class="dt">TicketPrice</span><span class="op">,</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fun</span> <span class="fu">withNewSeat</span><span class="op">(</span><span class="va">newSeat</span><span class="op">:</span> <span class="dt">Seat</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>        <span class="kw">return</span> new TicketDetail<span class="op">(</span>ticketType<span class="op">,</span> newSeat<span class="op">,</span> price<span class="op">)</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Booking<span class="op">(</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">val</span> <span class="va">bookingId</span><span class="op">:</span> <span class="dt">CustomerIdentifier</span> <span class="op">=</span> BookingIdentifier<span class="op">.</span>new<span class="op">(),</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">val</span> <span class="va">customerId</span><span class="op">:</span> <span class="dt">CustomerIdentifier</span><span class="op">,</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">val</span> <span class="va">cinemaId</span><span class="op">:</span> <span class="dt">CinemaIdentifier</span><span class="op">,</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">val</span> <span class="va">filmId</span><span class="op">:</span> <span class="dt">FilmIdentifier</span><span class="op">,</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> <span class="va">sessionTime</span><span class="op">:</span> <span class="dt">LocalDateTime</span><span class="op">,</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> <span class="va">ticketDetails</span><span class="op">:</span> <span class="dt">List</span>&lt;<span class="va">TicketDetail</span>&gt;<span class="op">,</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fun</span> <span class="fu">changeSeats</span><span class="op">(</span><span class="va">newSeats</span><span class="op">:</span> <span class="dt">List</span>&lt;<span class="va">Seat</span>&gt;<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>        ticketDetails <span class="op">=</span> ticketDetails<span class="op">.</span>zip<span class="op">(</span>newSeats<span class="op">).</span>forEach <span class="op">{</span>ticket<span class="op">,</span> seat <span class="op">-&gt;</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>            ticket<span class="op">.</span>withNewSeat<span class="op">(</span>seat<span class="op">)</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fun</span> <span class="fu">cancelBooking</span><span class="op">()</span> <span class="op">{</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Business logic...</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>Our booking class clearly represents a single booking, and actions
+associated with it. It is unlikely a future developer would bastardise
+this class by adding methods like <code>getAllBookings</code> or
+<code>findBooking</code>. Thus, we have better preserved the cohesion of
+our codebase going into the future. And maximising the maintainability
+of a codebase is critical for any long-lived application. There is no
+longer a “create” function, as this is simply performed through the act
+of instantiating the class. And the actions that can be made on this
+<strong>Entity</strong> are clearly defined by the class methods.
+Instead of the vague <code>updateBooking</code> class, we have
+<code>changeSeats</code>. The code reflects the actual use case and
+tells the developer why it’s there.</p>
+<h2 id="hide-your-domain-models-from-the-outside-world">Hide your domain
+models from the outside world</h2>
+<p>All projects have dependencies for communicating with the outside
+world. These could help serve RESTful endpoints, communicate with other
+services via RPC, or connect to a database. While necessary, none of
+this has anything to do with the purpose of the service. So, there is no
+reason to couple these external dependencies to this core business
+logic. This principle is often referred to as <a
+href="https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html">clean
+architecture</a>. DDD is not the only proponent of this style. But, with
+its strong emphasis on considered domain models, it does scream out for
+such an approach.</p>
+<p>Any layered architecture can achieve the separation of concerns
+required for clean architecture. My favourite is the Ports and Adapters
+(i.e. Hexagonal) style. It strongly promotes the use of clean domain
+models. The “ports” surround your core logic and serve as points of
+entry to your application. These ports are typically defined as
+interfaces. The concrete implementations of these interfaces are the
+“adapters” that leverage libraries and other dependencies to serve their
+function.</p>
+<figure>
+<img src="images/ddd_clean_architecture.png" />
+<figcaption>
+An illustration of the Ports and Adapters architecture, where arrows
+point in the direction of depenceny. If needed, we can easily change our
+datastore from PostgreSQL to MongoDB. Inbound and outbound ports don’t
+only interface with APIs and databases. This is only an example.
+</figcaption>
+</figure>
+<p>What’s wrong with a simple three-layer architecture, with a
+presentation, application, and data-access layer? If done well, nothing.
+But, particularly if combined with an object-relational mapping (ORM)
+framework, it can enable developers to take shortcuts. These reduce the
+maintainability of the project over its life. For example, with the ORM
+classes it is possible for the presentation layer to directly interact
+with the database. And a lazy developer might choose to do this for a
+simple CRUD operation, instead of passing data unnecessarily through the
+application layer. Over time, such a shortcut might occur for another
+reason. And then again, and again. The result is logic spread over all
+the layers of your application, defeating the original purpose of the
+layered architecture.</p>
+<p>Further, ORMs promote database driven design. It’s easier to pretend
+your ORM classes are the core models of your application. But that means
+your “model” actually reflects how the data is organised in the
+database, not how it’s represented in real life. And if these ORM
+classes are used as your core “models”, then good luck ever switching
+frameworks down the line. The ORM dependency is now tightly coupled to
+all your logic. You will effectively need to re-write your entire
+application. I have also seen the same mistake occur for gRPC generated
+data access classes. Best use a clean architecture and leave these
+dependencies out of your core business logic 😌</p>
+<h2 id="further-reading">Further reading</h2>
+<p>Am I an expert in DDD? No! But some of the insights above motivated
+me to apply it more, and to keep learning. If you feel the same, I’ve
+listing some additional resources below.<br/><br/> <a
+href="https://www.domainlanguage.com/wp-content/uploads/2016/05/DDD_Reference_2015-03.pdf">Domain-Driven
+Design Reference</a> - Eric Evans<br/> <a
+href="https://www.oreilly.com/library/view/domain-driven-design-tackling/0321125215/">Domain-Driven
+Design</a> - Eric Evans<br/> <a
+href="https://www.oreilly.com/library/view/implementing-domain-driven-design/9780133039900/">Implementing
+Domain-Driven Design</a> - Vaughn Vernon<br/> <a
+href="https://github.com/ddd-crew">Domain-Driven Design Crew GitHub
+repository</a><br/> <a
+href="https://www.eventstorming.com/">EventStorming website</a><br/></p>
