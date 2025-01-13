@@ -47,6 +47,10 @@
   word-break: break-word;
 }
 
+.blog-text strong {
+  font-weight: 500;
+}
+
 .blog-text p {
   margin-top: 0px;
   line-height: 1.6em;
@@ -70,6 +74,7 @@ time {
 }
 
 .blog-date {
+  min-width: 80px;
   display: flex;
   flex-flow: row;
   align-items: center;
@@ -103,7 +108,7 @@ time {
   letter-spacing: 0.001em;
   background: rgb(29, 25, 38);
   color: rgb(200, 198, 221);
-  border-radius: 1.0em;
+  border-radius: 1em;
   padding: 5px;
   margin-top: 20px;
   margin-bottom: 20px;
@@ -113,7 +118,8 @@ code .kw {
   color: rgb(0, 129, 161);
 }
 
-code .op, .co {
+code .op,
+.co {
   color: rgb(108, 103, 127);
 }
 
