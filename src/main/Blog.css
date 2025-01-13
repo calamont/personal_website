@@ -112,6 +112,7 @@ time {
   padding: 5px;
   margin-top: 20px;
   margin-bottom: 20px;
+  overflow: scroll;
 }
 
 code .kw {
