@@ -201,25 +201,24 @@ class="sourceCode kotlin"><code class="sourceCode kotlin"><span id="cb2-1"><a hr
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">val</span> <span class="va">ticketType</span><span class="op">:</span> <span class="dt">TicketType</span><span class="op">,</span></span>
 <span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="kw">val</span> <span class="va">seat</span><span class="op">:</span> <span class="dt">Seat</span><span class="op">,</span></span>
 <span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="kw">val</span> <span class="va">price</span><span class="op">:</span> <span class="dt">TicketPrice</span><span class="op">,</span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="op">)</span> <span class="op">{</span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="kw">class</span> BookingDetails<span class="op">(</span></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="kw">val</span> <span class="va">customerId</span><span class="op">:</span> <span class="dt">CustomerIdentifier</span><span class="op">,</span></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    <span class="kw">val</span> <span class="va">cinemaId</span><span class="op">:</span> <span class="dt">CinemaIdentifier</span><span class="op">,</span></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    <span class="kw">val</span> <span class="va">filmId</span><span class="op">:</span> <span class="dt">FilmIdentifier</span><span class="op">,</span></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    <span class="kw">val</span> <span class="va">sessionTime</span><span class="op">:</span> <span class="dt">LocalDateTime</span><span class="op">,</span></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    <span class="kw">val</span> <span class="va">ticketDetails</span><span class="op">:</span> <span class="dt">List</span>&lt;<span class="va">TicketDetail</span>&gt;<span class="op">,</span></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="op">)</span> <span class="op">{</span></span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Validates at least one seat being booked</span></span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Validates all seats positions are unique</span></span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="kw">fun</span> <span class="fu">confirmBooking</span><span class="op">(</span></span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>    <span class="va">details</span><span class="op">:</span> <span class="dt">BookingDetails</span><span class="op">,</span></span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="op">)</span> <span class="op">{</span></span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Business logic...</span></span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="op">)</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="kw">class</span> BookingDetails<span class="op">(</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    <span class="kw">val</span> <span class="va">customerId</span><span class="op">:</span> <span class="dt">CustomerIdentifier</span><span class="op">,</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="kw">val</span> <span class="va">cinemaId</span><span class="op">:</span> <span class="dt">CinemaIdentifier</span><span class="op">,</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    <span class="kw">val</span> <span class="va">filmId</span><span class="op">:</span> <span class="dt">FilmIdentifier</span><span class="op">,</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    <span class="kw">val</span> <span class="va">sessionTime</span><span class="op">:</span> <span class="dt">LocalDateTime</span><span class="op">,</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    <span class="kw">val</span> <span class="va">ticketDetails</span><span class="op">:</span> <span class="dt">List</span>&lt;<span class="va">TicketDetail</span>&gt;<span class="op">,</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Validates at least one seat being booked</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Validates all seats positions are unique</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="kw">fun</span> <span class="fu">confirmBooking</span><span class="op">(</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>    <span class="va">details</span><span class="op">:</span> <span class="dt">BookingDetails</span><span class="op">,</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Business logic...</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <p>These changes introduce a number of benefits.</p>
 <p><strong>Improved readability</strong><br/> Each type actually means
 something in our domain. They are not primitives. Also, related concepts
@@ -318,7 +317,7 @@ class="sourceCode kotlin"><code class="sourceCode kotlin"><span id="cb4-1"><a hr
 <span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="op">)</span> <span class="op">{</span></span>
 <span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fun</span> <span class="fu">changeSeats</span><span class="op">(</span><span class="va">newSeats</span><span class="op">:</span> <span class="dt">List</span>&lt;<span class="va">Seat</span>&gt;<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>        ticketDetails <span class="op">=</span> ticketDetails<span class="op">.</span>zip<span class="op">(</span>newSeats<span class="op">).</span>forEach <span class="op">{</span>ticket<span class="op">,</span> seat <span class="op">-&gt;</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>        ticketDetails <span class="op">=</span> ticketDetails<span class="op">.</span>zip<span class="op">(</span>newSeats<span class="op">).</span>map <span class="op">{</span> <span class="op">(</span>ticket<span class="op">,</span> seat<span class="op">)</span> <span class="op">-&gt;</span></span>
 <span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>            ticket<span class="op">.</span>withNewSeat<span class="op">(</span>seat<span class="op">)</span></span>
 <span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
 <span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
