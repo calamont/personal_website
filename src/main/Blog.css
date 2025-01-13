@@ -32,6 +32,11 @@
   letter-spacing: 0.1em;
 }
 
+.blog-text h4 {
+  margin-bottom: 0px;
+  font-weight: normal;
+}
+
 .blog-text {
   max-width: 850px;
   font-family: 'Helvetica';
@@ -91,4 +96,39 @@ time {
 
 .blog-link {
   margin: 0.5rem 0 0 0;
+}
+
+.sourceCode {
+  line-height: 1.4em;
+  letter-spacing: 0.001em;
+  background: rgb(29, 25, 38);
+  color: rgb(200, 198, 221);
+  border-radius: 1.0em;
+  padding: 5px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+code .kw {
+  color: rgb(0, 129, 161);
+}
+
+code .op, .co {
+  color: rgb(108, 103, 127);
+}
+
+code .va {
+  color: rgb(200, 122, 122);
+}
+
+code .dt {
+  color: rgb(183, 153, 213);
+}
+
+p > code {
+  font-size: 13px;
+  color: rgb(40, 40, 40);
+  background: rgb(240, 241, 242);
+  border-radius: 5px;
+  padding: 3px;
 }
